@@ -1,0 +1,344 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Developer Interface &#8212; md-toc 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python PEP compliancy" href="pep.html" />
+    <link rel="prev" title="CLI Usage helps" href="cli.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-md_toc">
+<span id="developer-interface"></span><h1>Developer Interface<a class="headerlink" href="#module-md_toc" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-interface">
+<h2>Main Interface<a class="headerlink" href="#main-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="md_toc.get_md_heading">
+<code class="descclassname">md_toc.</code><code class="descname">get_md_heading</code><span class="sig-paren">(</span><em>line</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.get_md_heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a line extract the title type and its text.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body">line</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None if the input line does not correspond to one of the
+designated cases or a data structure containing the necessary
+components to create a table of contents line, otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">one of the built-in exceptions.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_md_heading</span><span class="p">(</span><span class="s1">&#39; ## hi hOw Are YOu!!? ? #&#39;</span><span class="p">))</span>
+<span class="go">{&#39;type&#39;: 2, &#39;text_original&#39;: &#39;hi hOw Are YOu!!? ? #&#39;, &#39;text_slugified&#39;: &#39;hi-how-are-you&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="md_toc.build_toc_line">
+<code class="descclassname">md_toc.</code><code class="descname">build_toc_line</code><span class="sig-paren">(</span><em>header</em>, <em>ordered=False</em>, <em>index=1</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_toc_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list element of the table of contents.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>header</strong> (<em>dict</em>) – a data structure that contains the original
+text, the slugified text and the type of header.</li>
+<li><strong>ordered</strong> (<em>bool</em>) – if set to <code class="docutils literal"><span class="pre">True</span></code>, numbers will be used
+as list ids or otherwise a dash character, otherwise. Defaults
+to <code class="docutils literal"><span class="pre">False</span></code>.</li>
+<li><strong>index</strong> (<em>int</em>) – a number that will be used as list id in case of an
+ordered table of contents. Defaults to <code class="docutils literal"><span class="pre">1</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a single line of the table of contents.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built-in exceptions.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">header</span> <span class="o">=</span>  <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;text_original&#39;</span><span class="p">:</span> <span class="s1">&#39;hi hOw Are YOu!!? ? #&#39;</span><span class="p">,</span> <span class="s1">&#39;text_slugified&#39;</span><span class="p">:</span> <span class="s1">&#39;hi-how-are-you&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">build_toc_line</span><span class="p">(</span><span class="n">header</span><span class="p">,</span><span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">    3. [hi hOw Are YOu!!? ? #](hi-how-are-you)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="md_toc.increment_index_ordered_list">
+<code class="descclassname">md_toc.</code><code class="descname">increment_index_ordered_list</code><span class="sig-paren">(</span><em>header_type_count</em>, <em>header_type_prev</em>, <em>header_type_curr</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.increment_index_ordered_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute current index for ordered list table of contents.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body">header_type_count: the index numbers for all headers.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameter:</th><td class="field-body">header_type_prev: the previous type of header (h1, h2 or h3).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameter:</th><td class="field-body">header_type_curr: the current type of header (h1, h2 or h3).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">one of the built in exceptions</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ht</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;1&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">increment_index_ordered_list</span><span class="p">(</span><span class="n">ht</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ht</span>
+<span class="go">{&#39;1&#39;: 0, &#39;2&#39;: 0, &#39;3&#39;: 1}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="md_toc.build_toc">
+<code class="descclassname">md_toc.</code><code class="descname">build_toc</code><span class="sig-paren">(</span><em>filename</em>, <em>ordered=False</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_toc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse file by line and build the table of contents.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) – the file that needs to be read.</li>
+<li><strong>ordered</strong> (<em>bool</em>) – decides whether to build an ordered list or not.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the table of contents.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built-in exceptions.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">md_toc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go"># The main title</span>
+</pre></div>
+</div>
+<p>## Hello there!</p>
+<p>[](TOC)</p>
+<p>Here (up) will lie the toc</p>
+<p># Some other content ;,.-_ # bye</p>
+<p>a
+b
+c</p>
+<p>### zzz</p>
+<p># Again</p>
+<p>## qwerty</p>
+<p>## uiop</p>
+<p>vbnm</p>
+<p>### asdf</p>
+<p>zxc</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">build_toc</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">,</span><span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">1. [The main title](the-main-title)</span>
+<span class="go">    1. [Hello there!](hello-there)</span>
+<span class="go">2. [Some other content ;,.-_ # bye](some-other-content-bye)</span>
+<span class="go">        1. [zzz](zzz)</span>
+<span class="go">3. [Again](again)</span>
+<span class="go">    2. [qwerty](qwerty)</span>
+<span class="go">    3. [uiop](uiop)</span>
+<span class="go">        2. [asdf](asdf)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="md_toc.write_toc_on_md_file">
+<code class="descclassname">md_toc.</code><code class="descname">write_toc_on_md_file</code><span class="sig-paren">(</span><em>input_file</em>, <em>toc</em>, <em>in_place=True</em>, <em>toc_marker='[](TOC)'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.write_toc_on_md_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the table of contents.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_file</strong> (<em>str</em>) – the file that needs to be read or modified.</li>
+<li><strong>toc</strong> (<em>str</em>) – the table of contents.</li>
+<li><strong>in_place</strong> (<em>bool</em>) – decides whether to overwrite the input
+file or return the table of contents. Defaults to <code class="docutils literal"><span class="pre">True</span></code>.</li>
+<li><strong>toc_marker</strong> (<em>str</em>) – a marker that will identify the start
+and the end of the table of contents. Defaults to <code class="docutils literal"><span class="pre">[](TOC)</span></code>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if <code class="docutils literal"><span class="pre">in_place</span></code> is <code class="docutils literal"><span class="pre">True</span></code> or the table of contents with
+the markers in between, otherwise.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the fpyutils exceptions or one of the built-in exceptions.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">md_toc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go"># The main title</span>
+</pre></div>
+</div>
+<p>## Hello there!</p>
+<p>[](TOC)</p>
+<p>Here (up) will lie the toc</p>
+<p># Some other content ;,.-_ # bye</p>
+<p>a
+b
+c</p>
+<p>### zzz</p>
+<p># Again</p>
+<p>## qwerty</p>
+<p>## uiop</p>
+<p>vbnm</p>
+<p>### asdf</p>
+<p>zxc
+&gt;&gt;&gt; print(md_toc.api.write_toc_on_md_file(‘foo.md’,md_toc.api.build_toc(‘foo.md’),in_place=False),end=’‘)
+[](TOC)</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>[The main title](the-main-title)</dt>
+<dd><ul class="first last">
+<li>[Hello there!](hello-there)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>[Some other content ;,.-_ # bye](some-other-content-bye)</dt>
+<dd><ul class="first last">
+<li>[zzz](zzz)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>[Again](again)</dt>
+<dd><ul class="first last">
+<li>[qwerty](qwerty)</li>
+<li><dl class="first docutils">
+<dt>[uiop](uiop)</dt>
+<dd><ul class="first last">
+<li>[asdf](asdf)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>[](TOC)</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="cli.html" title="previous chapter">CLI Usage helps</a></li>
+      <li>Next: <a href="pep.html" title="next chapter">Python PEP compliancy</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Franco Masotti.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

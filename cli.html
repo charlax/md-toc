@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>CLI Usage helps &#8212; md-toc 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Developer Interface" href="api.html" />
+    <link rel="prev" title="Installation" href="install.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cli-usage-helps">
+<h1>CLI Usage helps<a class="headerlink" href="#cli-usage-helps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-help">
+<h2>Main help<a class="headerlink" href="#main-help" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>usage: md_toc [-h] [-v] {wtoc} …</p>
+<p>Markdown Table Of Contents</p>
+<dl class="docutils">
+<dt>positional arguments:</dt>
+<dd><dl class="first last docutils">
+<dt>{wtoc}</dt>
+<dd>wtoc         write the table of contents</dd>
+</dl>
+</dd>
+<dt>optional arguments:</dt>
+<dd><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>show this help message and exit</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span>, <span class="option">--version</span></kbd></td>
+<td>show program’s version number and exit</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<p>Return values: 0 OK, 1 Error, 2 Invalid command</p>
+</div></blockquote>
+</div>
+<div class="section" id="wtoc-sub-command">
+<h2>wtoc sub-command<a class="headerlink" href="#wtoc-sub-command" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>usage: md_toc wtoc [-h] [-i] [-o] [-t TOC_MARKER] FILE_NAME</p>
+<dl class="docutils">
+<dt>positional arguments:</dt>
+<dd>FILE_NAME             the i/o file name</dd>
+<dt>optional arguments:</dt>
+<dd><table class="first last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>show this help message and exit</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-i</span>, <span class="option">--in-place</span></kbd></td>
+<td>overwrite the input file</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-o</span>, <span class="option">--ordered</span></kbd></td>
+<td>write as an ordered list</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-t <var>TOC_MARKER</var></span>, <span class="option">--toc-marker <var>TOC_MARKER</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>set the string to be used as the marker for
+positioning the table of contents</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="api.html" title="next chapter">Developer Interface</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Franco Masotti.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/cli.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
