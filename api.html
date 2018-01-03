@@ -174,23 +174,34 @@ ordered table of contents. Defaults to <code class="docutils literal"><span clas
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="go"># The main title</span>
-</pre></div>
-</div>
-<p>## Hello there!</p>
-<p>[](TOC)</p>
-<p>Here (up) will lie the toc</p>
-<p># Some other content ;,.-_ # bye</p>
-<p>a
-b
-c</p>
-<p>### zzz</p>
-<p># Again</p>
-<p>## qwerty</p>
-<p>## uiop</p>
-<p>vbnm</p>
-<p>### asdf</p>
-<p>zxc</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">build_toc</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">,</span><span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="go">## Hello there!</span>
+
+<span class="go">[](TOC)</span>
+
+<span class="go">Here (up) will lie the toc</span>
+
+<span class="go"># Some other content ;,.-_ # bye</span>
+
+<span class="go">a</span>
+<span class="go">b</span>
+<span class="go">c</span>
+
+<span class="go">### zzz</span>
+
+<span class="go"># Again</span>
+
+<span class="go">## qwerty</span>
+
+<span class="go">## uiop</span>
+
+<span class="go">vbnm</span>
+
+<span class="go">### asdf</span>
+
+<span class="go">zxc</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">build_toc</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">,</span><span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="go">1. [The main title](the-main-title)</span>
 <span class="go">    1. [Hello there!](hello-there)</span>
 <span class="go">2. [Some other content ;,.-_ # bye](some-other-content-bye)</span>
@@ -239,59 +250,47 @@ the markers in between, otherwise.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="go"># The main title</span>
+
+<span class="go">## Hello there!sdfc</span>
+
+<span class="go">[](TOC)</span>
+
+<span class="go">Here (up) will lie the toc</span>
+
+<span class="go"># Some other content ;,.-_ # bye</span>
+
+<span class="go">a</span>
+<span class="go">b</span>
+<span class="go">c</span>
+
+<span class="go">### zzz</span>
+
+<span class="go"># Again</span>
+
+<span class="go">## qwerty</span>
+
+<span class="go">## uiop</span>
+
+<span class="go">vbnm</span>
+
+<span class="go">### asdf</span>
+
+<span class="go">zxc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">write_toc_on_md_file</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">,</span><span class="n">md_toc</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">build_toc</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">),</span><span class="n">in_place</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">    [](TOC)</span>
+
+<span class="go">    - [The main title](the-main-title)</span>
+<span class="go">        - [Hello there!](hello-there)</span>
+<span class="go">    - [Some other content ;,.-_ # bye](some-other-content-bye)</span>
+<span class="go">            - [zzz](zzz)</span>
+<span class="go">    - [Again](again)</span>
+<span class="go">        - [qwerty](qwerty)</span>
+<span class="go">        - [uiop](uiop)</span>
+<span class="go">            - [asdf](asdf)</span>
+
+<span class="go">    [](TOC)</span>
 </pre></div>
 </div>
-<p>## Hello there!</p>
-<p>[](TOC)</p>
-<p>Here (up) will lie the toc</p>
-<p># Some other content ;,.-_ # bye</p>
-<p>a
-b
-c</p>
-<p>### zzz</p>
-<p># Again</p>
-<p>## qwerty</p>
-<p>## uiop</p>
-<p>vbnm</p>
-<p>### asdf</p>
-<p>zxc
-&gt;&gt;&gt; print(md_toc.api.write_toc_on_md_file(‘foo.md’,md_toc.api.build_toc(‘foo.md’),in_place=False),end=’‘)
-[](TOC)</p>
-<ul class="simple">
-<li><dl class="first docutils">
-<dt>[The main title](the-main-title)</dt>
-<dd><ul class="first last">
-<li>[Hello there!](hello-there)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>[Some other content ;,.-_ # bye](some-other-content-bye)</dt>
-<dd><ul class="first last">
-<li>[zzz](zzz)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>[Again](again)</dt>
-<dd><ul class="first last">
-<li>[qwerty](qwerty)</li>
-<li><dl class="first docutils">
-<dt>[uiop](uiop)</dt>
-<dd><ul class="first last">
-<li>[asdf](asdf)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>[](TOC)</p>
 </dd></dl>
 
 </div>
@@ -302,7 +301,38 @@ c</p>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">md-toc</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=frnmst&repo=md-toc&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Usage helps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-interface">Main Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pep.html">Python PEP compliancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright_license.html">Copyright and License</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
@@ -337,6 +367,10 @@ c</p>
           rel="nofollow">Page source</a>
     </div>
 
+    
+    <a href="https://github.com/frnmst/md-toc" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
     
 
     
