@@ -1,0 +1,283 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Markdown spec &#8212; md-toc 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python PEP compliancy" href="pep.html" />
+    <link rel="prev" title="Developer Interface" href="api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="markdown-spec">
+<h1>Markdown spec<a class="headerlink" href="#markdown-spec" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="anchor-link-types-and-behaviours">
+<h2>Anchor link types and behaviours<a class="headerlink" href="#anchor-link-types-and-behaviours" title="Permalink to this headline">¶</a></h2>
+<p>Since anchor links are a prominent feature of md_toc so some research was
+necessary to make sure that they work under all conditions.</p>
+<p>Markdown parsers have different behaviours regarding anchor links. Some of them
+implement them while others don’t; some act on the duplicate entry problem
+while others don’t; some strip consecutive dash characters while others don’t;
+and so on…</p>
+<p>What follows is a list of parameters and rules used by md_toc to decide
+how to render anchor links. Note that only <code class="docutils literal"><span class="pre">standard</span></code>, <code class="docutils literal"><span class="pre">github</span></code>,
+<code class="docutils literal"><span class="pre">redcarpet</span></code> and <code class="docutils literal"><span class="pre">gitlab</span></code> are currently implemented.</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">standard</span></code>: no transformation is done.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">github</span></code>: a translated version of the Ruby algorithm is used in md_toc.
+The original one is repored here:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb">https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb</a></li>
+</ul>
+<p>GitHub uses a forked version of cmark-gfm:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/github/cmark">https://github.com/github/cmark</a></li>
+</ul>
+<p>I could not find the code directly responsable for the anchor link generation.
+See also:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.github.com/gfm/">https://github.github.com/gfm/</a></li>
+<li><a class="reference external" href="https://githubengineering.com/a-formal-spec-for-github-markdown/">https://githubengineering.com/a-formal-spec-for-github-markdown/</a></li>
+<li><a class="reference external" href="https://github.com/github/cmark/issues/65#issuecomment-343433978">https://github.com/github/cmark/issues/65#issuecomment-343433978</a></li>
+</ul>
+<p>This is the license used in md_toc:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2012</span> <span class="n">GitHub</span> <span class="n">Inc</span><span class="o">.</span> <span class="ow">and</span> <span class="n">Jerry</span> <span class="n">Cheung</span>
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2018</span><span class="p">,</span> <span class="n">Franco</span> <span class="n">Masotti</span> <span class="o">&lt;</span><span class="n">franco</span><span class="o">.</span><span class="n">masotti</span><span class="nd">@student</span><span class="o">.</span><span class="n">unife</span><span class="o">.</span><span class="n">it</span><span class="o">&gt;</span>
+
+<span class="n">MIT</span> <span class="n">License</span>
+
+<span class="n">Permission</span> <span class="ow">is</span> <span class="n">hereby</span> <span class="n">granted</span><span class="p">,</span> <span class="n">free</span> <span class="n">of</span> <span class="n">charge</span><span class="p">,</span> <span class="n">to</span> <span class="nb">any</span> <span class="n">person</span> <span class="n">obtaining</span>
+<span class="n">a</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">this</span> <span class="n">software</span> <span class="ow">and</span> <span class="n">associated</span> <span class="n">documentation</span> <span class="n">files</span> <span class="p">(</span><span class="n">the</span>
+<span class="s2">&quot;Software&quot;</span><span class="p">),</span> <span class="n">to</span> <span class="n">deal</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Software</span> <span class="n">without</span> <span class="n">restriction</span><span class="p">,</span> <span class="n">including</span>
+<span class="n">without</span> <span class="n">limitation</span> <span class="n">the</span> <span class="n">rights</span> <span class="n">to</span> <span class="n">use</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">modify</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">publish</span><span class="p">,</span>
+<span class="n">distribute</span><span class="p">,</span> <span class="n">sublicense</span><span class="p">,</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">sell</span> <span class="n">copies</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="p">,</span> <span class="ow">and</span> <span class="n">to</span>
+<span class="n">permit</span> <span class="n">persons</span> <span class="n">to</span> <span class="n">whom</span> <span class="n">the</span> <span class="n">Software</span> <span class="ow">is</span> <span class="n">furnished</span> <span class="n">to</span> <span class="n">do</span> <span class="n">so</span><span class="p">,</span> <span class="n">subject</span> <span class="n">to</span>
+<span class="n">the</span> <span class="n">following</span> <span class="n">conditions</span><span class="p">:</span>
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">copyright</span> <span class="n">notice</span> <span class="ow">and</span> <span class="n">this</span> <span class="n">permission</span> <span class="n">notice</span> <span class="n">shall</span> <span class="n">be</span>
+<span class="n">included</span> <span class="ow">in</span> <span class="nb">all</span> <span class="n">copies</span> <span class="ow">or</span> <span class="n">substantial</span> <span class="n">portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="o">.</span>
+
+<span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">IS</span> <span class="n">PROVIDED</span> <span class="s2">&quot;AS IS&quot;</span><span class="p">,</span> <span class="n">WITHOUT</span> <span class="n">WARRANTY</span> <span class="n">OF</span> <span class="n">ANY</span> <span class="n">KIND</span><span class="p">,</span>
+<span class="n">EXPRESS</span> <span class="n">OR</span> <span class="n">IMPLIED</span><span class="p">,</span> <span class="n">INCLUDING</span> <span class="n">BUT</span> <span class="n">NOT</span> <span class="n">LIMITED</span> <span class="n">TO</span> <span class="n">THE</span> <span class="n">WARRANTIES</span> <span class="n">OF</span>
+<span class="n">MERCHANTABILITY</span><span class="p">,</span> <span class="n">FITNESS</span> <span class="n">FOR</span> <span class="n">A</span> <span class="n">PARTICULAR</span> <span class="n">PURPOSE</span> <span class="n">AND</span>
+<span class="n">NONINFRINGEMENT</span><span class="o">.</span> <span class="n">IN</span> <span class="n">NO</span> <span class="n">EVENT</span> <span class="n">SHALL</span> <span class="n">THE</span> <span class="n">AUTHORS</span> <span class="n">OR</span> <span class="n">COPYRIGHT</span> <span class="n">HOLDERS</span> <span class="n">BE</span>
+<span class="n">LIABLE</span> <span class="n">FOR</span> <span class="n">ANY</span> <span class="n">CLAIM</span><span class="p">,</span> <span class="n">DAMAGES</span> <span class="n">OR</span> <span class="n">OTHER</span> <span class="n">LIABILITY</span><span class="p">,</span> <span class="n">WHETHER</span> <span class="n">IN</span> <span class="n">AN</span> <span class="n">ACTION</span>
+<span class="n">OF</span> <span class="n">CONTRACT</span><span class="p">,</span> <span class="n">TORT</span> <span class="n">OR</span> <span class="n">OTHERWISE</span><span class="p">,</span> <span class="n">ARISING</span> <span class="n">FROM</span><span class="p">,</span> <span class="n">OUT</span> <span class="n">OF</span> <span class="n">OR</span> <span class="n">IN</span> <span class="n">CONNECTION</span>
+<span class="n">WITH</span> <span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">OR</span> <span class="n">THE</span> <span class="n">USE</span> <span class="n">OR</span> <span class="n">OTHER</span> <span class="n">DEALINGS</span> <span class="n">IN</span> <span class="n">THE</span> <span class="n">SOFTWARE</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">redcarpet</span></code>: Treats consecutive dash characters by tranforming them into a
+single dash character. A translated version of the C algorithm
+is used in md_toc. The original version is here:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/html.c#L274">https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/html.c#L274</a></li>
+</ul>
+<p>This is the license used in md_toc:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2009</span><span class="p">,</span> <span class="n">Natacha</span> <span class="n">Porté</span>
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2015</span><span class="p">,</span> <span class="n">Vicent</span> <span class="n">Marti</span>
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2018</span><span class="p">,</span> <span class="n">Franco</span> <span class="n">Masotti</span> <span class="o">&lt;</span><span class="n">franco</span><span class="o">.</span><span class="n">masotti</span><span class="nd">@student</span><span class="o">.</span><span class="n">unife</span><span class="o">.</span><span class="n">it</span><span class="o">&gt;</span>
+
+<span class="n">Permission</span> <span class="ow">is</span> <span class="n">hereby</span> <span class="n">granted</span><span class="p">,</span> <span class="n">free</span> <span class="n">of</span> <span class="n">charge</span><span class="p">,</span> <span class="n">to</span> <span class="nb">any</span> <span class="n">person</span> <span class="n">obtaining</span> <span class="n">a</span> <span class="n">copy</span>
+<span class="n">of</span> <span class="n">this</span> <span class="n">software</span> <span class="ow">and</span> <span class="n">associated</span> <span class="n">documentation</span> <span class="n">files</span> <span class="p">(</span><span class="n">the</span> <span class="s2">&quot;Software&quot;</span><span class="p">),</span> <span class="n">to</span> <span class="n">deal</span>
+<span class="ow">in</span> <span class="n">the</span> <span class="n">Software</span> <span class="n">without</span> <span class="n">restriction</span><span class="p">,</span> <span class="n">including</span> <span class="n">without</span> <span class="n">limitation</span> <span class="n">the</span> <span class="n">rights</span>
+<span class="n">to</span> <span class="n">use</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">modify</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">publish</span><span class="p">,</span> <span class="n">distribute</span><span class="p">,</span> <span class="n">sublicense</span><span class="p">,</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">sell</span>
+<span class="n">copies</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="p">,</span> <span class="ow">and</span> <span class="n">to</span> <span class="n">permit</span> <span class="n">persons</span> <span class="n">to</span> <span class="n">whom</span> <span class="n">the</span> <span class="n">Software</span> <span class="ow">is</span>
+<span class="n">furnished</span> <span class="n">to</span> <span class="n">do</span> <span class="n">so</span><span class="p">,</span> <span class="n">subject</span> <span class="n">to</span> <span class="n">the</span> <span class="n">following</span> <span class="n">conditions</span><span class="p">:</span>
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">copyright</span> <span class="n">notice</span> <span class="ow">and</span> <span class="n">this</span> <span class="n">permission</span> <span class="n">notice</span> <span class="n">shall</span> <span class="n">be</span> <span class="n">included</span> <span class="ow">in</span>
+<span class="nb">all</span> <span class="n">copies</span> <span class="ow">or</span> <span class="n">substantial</span> <span class="n">portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="o">.</span>
+<span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">IS</span> <span class="n">PROVIDED</span> <span class="s2">&quot;AS IS&quot;</span><span class="p">,</span> <span class="n">WITHOUT</span> <span class="n">WARRANTY</span> <span class="n">OF</span> <span class="n">ANY</span> <span class="n">KIND</span><span class="p">,</span> <span class="n">EXPRESS</span> <span class="n">OR</span>
+<span class="n">IMPLIED</span><span class="p">,</span> <span class="n">INCLUDING</span> <span class="n">BUT</span> <span class="n">NOT</span> <span class="n">LIMITED</span> <span class="n">TO</span> <span class="n">THE</span> <span class="n">WARRANTIES</span> <span class="n">OF</span> <span class="n">MERCHANTABILITY</span><span class="p">,</span>
+<span class="n">FITNESS</span> <span class="n">FOR</span> <span class="n">A</span> <span class="n">PARTICULAR</span> <span class="n">PURPOSE</span> <span class="n">AND</span> <span class="n">NONINFRINGEMENT</span><span class="o">.</span> <span class="n">IN</span> <span class="n">NO</span> <span class="n">EVENT</span> <span class="n">SHALL</span> <span class="n">THE</span>
+<span class="n">AUTHORS</span> <span class="n">OR</span> <span class="n">COPYRIGHT</span> <span class="n">HOLDERS</span> <span class="n">BE</span> <span class="n">LIABLE</span> <span class="n">FOR</span> <span class="n">ANY</span> <span class="n">CLAIM</span><span class="p">,</span> <span class="n">DAMAGES</span> <span class="n">OR</span> <span class="n">OTHER</span>
+<span class="n">LIABILITY</span><span class="p">,</span> <span class="n">WHETHER</span> <span class="n">IN</span> <span class="n">AN</span> <span class="n">ACTION</span> <span class="n">OF</span> <span class="n">CONTRACT</span><span class="p">,</span> <span class="n">TORT</span> <span class="n">OR</span> <span class="n">OTHERWISE</span><span class="p">,</span>  <span class="n">ARISING</span> <span class="n">FROM</span><span class="p">,</span>
+<span class="n">OUT</span> <span class="n">OF</span> <span class="n">OR</span> <span class="n">IN</span> <span class="n">CONNECTION</span> <span class="n">WITH</span> <span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">OR</span> <span class="n">THE</span> <span class="n">USE</span> <span class="n">OR</span> <span class="n">OTHER</span>  <span class="n">DEALINGS</span> <span class="n">IN</span>
+<span class="n">THE</span> <span class="n">SOFTWARE</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>See also:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/vmg/redcarpet/issues/618#issuecomment-306476184">https://github.com/vmg/redcarpet/issues/618#issuecomment-306476184</a></li>
+<li><a class="reference external" href="https://github.com/vmg/redcarpet/issues/307#issuecomment-261793668">https://github.com/vmg/redcarpet/issues/307#issuecomment-261793668</a></li>
+</ul>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">gitlab</span></code>: GitLab uses the Redcarpet parser with some modifications, such
+as duplicate anchor link detection. A generic pseudocode is
+available here:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://gitlab.com/help/user/markdown.md#header-ids-and-links">https://gitlab.com/help/user/markdown.md#header-ids-and-links</a></li>
+</ul>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">gogs</span></code>, <code class="docutils literal"><span class="pre">marked</span></code>, <code class="docutils literal"><span class="pre">notabug</span></code>: Gogs uses marked as the markdown
+parser while <em>NotABug.org is powered by a liberated version of gogs</em>.
+Situation seems unclear. Here are some links:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://gogs.io/docs">https://gogs.io/docs</a></li>
+<li><a class="reference external" href="https://github.com/chjj/marked">https://github.com/chjj/marked</a></li>
+<li><a class="reference external" href="https://github.com/chjj/marked/issues/981">https://github.com/chjj/marked/issues/981</a></li>
+<li><a class="reference external" href="https://github.com/chjj/marked/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93">https://github.com/chjj/marked/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93</a></li>
+<li><a class="reference external" href="https://notabug.org/hp/gogs/">https://notabug.org/hp/gogs/</a></li>
+</ul>
+<p>For this reason no implementation is available for the moment.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">kramdown</span></code>: It is unclear if this feature is available. See:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/gettalong/kramdown/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93">https://github.com/gettalong/kramdown/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="what-are-headers-and-what-are-not">
+<h2>What are headers and what are not<a class="headerlink" href="#what-are-headers-and-what-are-not" title="Permalink to this headline">¶</a></h2>
+<p>According to the GFM, there can be no more than 6 types of headings,``h1`` to
+<code class="docutils literal"><span class="pre">h6</span></code> in HTML terms, and there shall be from 0 to a 3 space indentation
+(optionally) for a text to be a header</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.github.com/gfm/#atx-heading">https://github.github.com/gfm/#atx-heading</a></li>
+</ul>
+</div></blockquote>
+<p>To avoid unexpected behaviours empty headers are ignored while building the
+table of contents. The GFM, however, allows empty headers:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.github.com/gfm/#example-49">https://github.github.com/gfm/#example-49</a></li>
+</ul>
+</div></blockquote>
+<p>There are a lot of other special cases described on the GFM document.</p>
+<p>Anyway, md_toc simplifies all this. A line is a header when:</p>
+<blockquote>
+<div><ul class="simple">
+<li>it starts with a consecutive series of <code class="docutils literal"><span class="pre">#</span></code> characters which may go from
+1 to infinite,</li>
+<li>and, there shall be an unlimited number of indentation spaces between the
+start of the line and the first <code class="docutils literal"><span class="pre">#</span></code> character,</li>
+<li>and, there shall be an unlimited number of spaces between the
+last <code class="docutils literal"><span class="pre">#</span></code> character and the header text,</li>
+<li>and NOT, when there are whitespace characters only after the series of
+<code class="docutils literal"><span class="pre">#</span></code> characters.</li>
+</ul>
+</div></blockquote>
+<p>md_toc’s definition of header/heading is certainly not conformat with GFM and
+probably with the other markdown parsers as well (which may be also behave
+differrently compared to GitHub’s cmark in this matter). Knowing what are
+headers and what are not requires going through the specific parts of the code
+of all the parsers.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">md-toc</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=frnmst&repo=md-toc&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Usage helps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Developer Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Markdown spec</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#anchor-link-types-and-behaviours">Anchor link types and behaviours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-headers-and-what-are-not">What are headers and what are not</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pep.html">Python PEP compliancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright_license.html">Copyright and License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="api.html" title="previous chapter">Developer Interface</a></li>
+      <li>Next: <a href="pep.html" title="next chapter">Python PEP compliancy</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Franco Masotti.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/markdown_specification.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/frnmst/md-toc" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
