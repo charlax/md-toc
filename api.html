@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Developer Interface &#8212; md-toc 1.0.0 documentation</title>
+    <title>Developer Interface &#8212; md-toc 2.0.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0.0',
+        VERSION:     '2.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Markdown spec" href="markdown_specification.html" />
-    <link rel="prev" title="CLI Usage helps" href="cli.html" />
+    <link rel="prev" title="Installation" href="install.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -44,80 +44,50 @@
 <span id="developer-interface"></span><h1>Developer Interface<a class="headerlink" href="#module-md_toc" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="main-interface">
 <h2>Main Interface<a class="headerlink" href="#main-interface" title="Permalink to this headline">¶</a></h2>
+<p>Examples for the most relevant api functions can be viewed in the test
+file.</p>
 <dl class="function">
-<dt id="md_toc.remove_md_header_syntax">
-<code class="descclassname">md_toc.</code><code class="descname">remove_md_header_syntax</code><span class="sig-paren">(</span><em>header_text_line</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.remove_md_header_syntax" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a trimmed version of the input line without the markdown header syntax.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>header_text_line</strong> (<em>str</em>) – a single markdown line that needs to be
-transformed into a TOC line.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a trimmed version of the input line without the markdown header
-syntax.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">one of the built-in exceptions.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">this function removes the leading and trailing whitespaces, the first
-consecutive ‘#’ characters and any space left behind after removing those.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">md_toc</span><span class="o">.</span><span class="n">remove_md_header_syntax</span><span class="p">(</span><span class="s1">&#39; ### hello ## how # are you ???  ! &#39;</span><span class="p">)</span>
-<span class="go">&#39;hello ## how # are you ???  !&#39;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="function">
-<dt id="md_toc.get_md_header_type">
-<code class="descclassname">md_toc.</code><code class="descname">get_md_header_type</code><span class="sig-paren">(</span><em>line</em>, <em>max_header_levels=3</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.get_md_header_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a line extract the title type.</p>
+<dt id="md_toc.get_atx_heading">
+<code class="descclassname">md_toc.</code><code class="descname">get_atx_heading</code><span class="sig-paren">(</span><em>line</em>, <em>keep_header_levels=3</em>, <em>parser='github'</em>, <em>no_links=False</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.get_atx_heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a line extract the link label and its type.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>line</strong> (<em>str</em>) – the line to be examined.</li>
-<li><strong>max_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
+<li><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
 considered as such when building the table of contents. Defaults to <code class="docutils literal"><span class="pre">3</span></code>.</li>
+<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
+Defaults to <code class="docutils literal"><span class="pre">github</span></code>. Supported anchor types are: <code class="docutils literal"><span class="pre">github</span></code>,
+<code class="docutils literal"><span class="pre">gitlab</span></code>, <code class="docutils literal"><span class="pre">redcarpet</span></code>.</li>
+<li><strong>no_links</strong> – disables the use of links.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the line does not contain header elements, or the header
-type, otherwise.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the line does not contain header elements according to
+the rules of the selected markdown parser, or a tuple containing the
+header type and the trimmed header text, according to the selected
+parser rules, otherwise.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">int</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">tuple</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built in exceptions.</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built in exceptions or GithubEmptyLinkLabel or
+GithubOverflowCharsLinkLabel</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Warning:</th><td class="field-body"><p class="first">the parameter max_header_levels must be greater than 0.</p>
+<tr class="field-odd field"><th class="field-name">Warning:</th><td class="field-body"><p class="first last">the parameter keep_header_levels must be greater than 0.</p>
 </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">get_md_header_type</span><span class="p">(</span><span class="s1">&#39;###  hello ## how # are you ???  ! &#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="go">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">get_md_header_type</span><span class="p">(</span><span class="s1">&#39;###  hello ## how # are you ???  ! &#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="go">None</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.get_md_header">
-<code class="descclassname">md_toc.</code><code class="descname">get_md_header</code><span class="sig-paren">(</span><em>header_text_line</em>, <em>header_duplicate_counter</em>, <em>max_header_levels=3</em>, <em>anchor_type='standard'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.get_md_header" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">md_toc.</code><code class="descname">get_md_header</code><span class="sig-paren">(</span><em>header_text_line</em>, <em>header_duplicate_counter</em>, <em>keep_header_levels=3</em>, <em>parser='github'</em>, <em>no_links=False</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.get_md_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a data structure with the elements needed to create a TOC line.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -129,11 +99,11 @@ transformed into a TOC line.</li>
 <li><strong>header_duplicate_counter</strong> (<em>dict</em>) – a data structure that contains the
 number of occurrencies of each header anchor link. This is used to
 avoid duplicate anchor links and it is meaningful only for certain
-values of anchor_type.</li>
-<li><strong>max_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
+values of parser.</li>
+<li><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
 considered as such when building the table of contents. Defaults to <code class="docutils literal"><span class="pre">3</span></code>.</li>
-<li><strong>anchor_type</strong> (<em>str</em>) – decides rules on how to generate anchor links.
-Defaults to <code class="docutils literal"><span class="pre">standard</span></code>.</li>
+<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
+Defaults to <code class="docutils literal"><span class="pre">github</span></code>.</li>
 </ul>
 </td>
 </tr>
@@ -148,22 +118,16 @@ components to create a table of contents line, otherwise.</p>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built-in exceptions.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first">this works like a wrapper to other functions.</p>
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first last">this works like a wrapper to other functions.</p>
 </td>
-</tr>
-<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">get_md_header</span><span class="p">(</span><span class="s1">&#39; ## hi hOw Are YOu!!? ? #&#39;</span><span class="p">))</span>
-<span class="go">{&#39;type&#39;: 2, &#39;text_original&#39;: &#39;hi hOw Are YOu!!? ? #&#39;, &#39;text_anchor_link&#39;: &#39;hi hOw Are YOu!!? ? #&#39;}</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_toc_line">
-<code class="descclassname">md_toc.</code><code class="descname">build_toc_line</code><span class="sig-paren">(</span><em>header</em>, <em>ordered=False</em>, <em>no_links=False</em>, <em>index=1</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_toc_line" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">md_toc.</code><code class="descname">build_toc_line</code><span class="sig-paren">(</span><em>header</em>, <em>ordered=False</em>, <em>no_links=False</em>, <em>index=1</em>, <em>parser='github'</em>, <em>list_marker='-'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_toc_line" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list element of the table of contents.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -171,7 +135,7 @@ components to create a table of contents line, otherwise.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>header</strong> (<em>dict</em>) – a data structure that contains the original
-text, the slugified text and the type of header.</li>
+text, the trimmed text and the type of header.</li>
 <li><strong>ordered</strong> (<em>bool</em>) – if set to <code class="docutils literal"><span class="pre">True</span></code>, numbers will be used
 as list ids or otherwise a dash character, otherwise. Defaults
 to <code class="docutils literal"><span class="pre">False</span></code>.</li>
@@ -187,23 +151,16 @@ ordered table of contents. Defaults to <code class="docutils literal"><span clas
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built-in exceptions.</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">one of the built-in exceptions.</p>
 </td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">header</span> <span class="o">=</span>  <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;text_original&#39;</span><span class="p">:</span> <span class="s1">&#39;hi hOw Are YOu!!? ? #&#39;</span><span class="p">,</span> <span class="s1">&#39;text_anchor_link&#39;</span><span class="p">:</span> <span class="s1">&#39;hi-how-are-you&#39;</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">build_toc_line</span><span class="p">(</span><span class="n">header</span><span class="p">,</span><span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-<span class="go">    3. [hi hOw Are YOu!!? ? #](#hi-how-are-you)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.increase_index_ordered_list">
-<code class="descclassname">md_toc.</code><code class="descname">increase_index_ordered_list</code><span class="sig-paren">(</span><em>header_type_count</em>, <em>header_type_prev</em>, <em>header_type_curr</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.increase_index_ordered_list" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">md_toc.</code><code class="descname">increase_index_ordered_list</code><span class="sig-paren">(</span><em>header_type_count</em>, <em>header_type_prev</em>, <em>header_type_curr</em>, <em>parser='github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.increase_index_ordered_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the current index for ordered list table of contents.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -213,6 +170,7 @@ ordered table of contents. Defaults to <code class="docutils literal"><span clas
 <li><strong>header_type_count</strong> (<em>dict</em>) – the count of each header type.</li>
 <li><strong>header_type_prev</strong> (<em>int</em>) – the previous type of header (h[1-Inf]).</li>
 <li><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1-Inf]).</li>
+<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate ordered list markers</li>
 </ul>
 </td>
 </tr>
@@ -222,24 +180,16 @@ ordered table of contents. Defaults to <code class="docutils literal"><span clas
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built in exceptions</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">one of the built in exceptions</p>
 </td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ht</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">md_toc</span><span class="o">.</span><span class="n">increase_index_ordered_list</span><span class="p">(</span><span class="n">ht</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ht</span>
-<span class="go">{1: 0, 2: 0, 3: 1}</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_anchor_link">
-<code class="descclassname">md_toc.</code><code class="descname">build_anchor_link</code><span class="sig-paren">(</span><em>header_text_trimmed</em>, <em>header_duplicate_counter</em>, <em>anchor_type='standard'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_anchor_link" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">md_toc.</code><code class="descname">build_anchor_link</code><span class="sig-paren">(</span><em>header_text_trimmed</em>, <em>header_duplicate_counter</em>, <em>parser='github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_anchor_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply the specified slug rule to build the anchor link.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -249,15 +199,15 @@ ordered table of contents. Defaults to <code class="docutils literal"><span clas
 <li><strong>header_text_trimmed</strong> (<em>str</em>) – the text that needs to be transformed in a link</li>
 <li><strong>header_duplicate_counter</strong> (<em>dict</em>) – a data structure that keeps track of
 possible duplicate header links in order to avoid them. This is
-meaningful only for certain values of anchor_type.</li>
-<li><strong>anchor_type</strong> (<em>str</em>) – decides rules on how to generate anchor links.
-Defaults to <code class="docutils literal"><span class="pre">standard</span></code>. Supported anchor types are: <code class="docutils literal"><span class="pre">standard</span></code>,
-<code class="docutils literal"><span class="pre">github</span></code>, <code class="docutils literal"><span class="pre">gitlab</span></code>, <code class="docutils literal"><span class="pre">redcarpet</span></code>.</li>
+meaningful only for certain values of parser.</li>
+<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
+Defaults to <code class="docutils literal"><span class="pre">github</span></code>. Supported anchor types are: <code class="docutils literal"><span class="pre">github</span></code>,
+<code class="docutils literal"><span class="pre">gitlab</span></code>, <code class="docutils literal"><span class="pre">redcarpet</span></code>.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the specified anchor type is not recognized, or the
-anchor link, otherwise.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the specified parser is not recognized, or the anchor
+link, otherwise.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
@@ -266,24 +216,17 @@ anchor link, otherwise.</p>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built-in exceptions.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first">For a detailed description of the behaviour of each anchor type
-and for the licenses of each markdown parser algorithm, please refer to
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first last">The licenses of each markdown parser algorithm are reported on
 the ‘Markdown spec’ documentation page.</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">build_anchor_link</span><span class="p">(</span><span class="s1">&#39;   hello ## how # are you ???  ! &#39;</span><span class="p">,</span><span class="nb">dict</span><span class="p">(),</span><span class="s1">&#39;gitlab&#39;</span><span class="p">))</span>
-<span class="go">hello-how-are-you</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_toc">
-<code class="descclassname">md_toc.</code><code class="descname">build_toc</code><span class="sig-paren">(</span><em>filename</em>, <em>ordered=False</em>, <em>no_links=False</em>, <em>max_header_levels=3</em>, <em>anchor_type='standard'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_toc" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">md_toc.</code><code class="descname">build_toc</code><span class="sig-paren">(</span><em>filename</em>, <em>ordered=False</em>, <em>no_links=False</em>, <em>keep_header_levels=3</em>, <em>parser='github'</em>, <em>list_marker='-'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_toc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse file by line and build the table of contents.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -293,11 +236,11 @@ the ‘Markdown spec’ documentation page.</p>
 <li><strong>filename</strong> (<em>str</em>) – the file that needs to be read.</li>
 <li><strong>ordered</strong> (<em>bool</em>) – decides whether to build an ordered list or not.</li>
 <li><strong>no_links</strong> (<em>bool</em>) – disables the use of links.</li>
-<li><strong>max_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
+<li><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
 considered as such when building the table of contents. Defaults to
 <code class="docutils literal"><span class="pre">3</span></code>.</li>
-<li><strong>anchor_type</strong> (<em>str</em>) – decides rules on how to generate anchor links.
-Defaults to <code class="docutils literal"><span class="pre">standard</span></code>.</li>
+<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
+Defaults to <code class="docutils literal"><span class="pre">github</span></code>.</li>
 </ul>
 </td>
 </tr>
@@ -307,31 +250,11 @@ Defaults to <code class="docutils literal"><span class="pre">standard</span></co
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the built-in exceptions.</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">one of the built-in exceptions.</p>
 </td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">md_toc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="go">## Hi</span>
-
-<span class="go">hey</span>
-
-<span class="go">### How are you?           !!!</span>
-
-<span class="go">fine, thanks</span>
-
-<span class="go"># Bye</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">md_toc</span><span class="o">.</span><span class="n">build_toc</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">,</span><span class="n">anchor_type</span><span class="o">=</span><span class="s1">&#39;gitlab&#39;</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="go">    - [Hi](#hi)</span>
-<span class="go">        - [How are you?           !!!](#how-are-you)</span>
-<span class="go">- [Bye](#bye)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="function">
@@ -356,54 +279,11 @@ and the end of the string.</li>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">one of the fpyutils exceptions or one of the built-in exceptions.</p>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">one of the fpyutils exceptions or one of the built-in exceptions.</p>
 </td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">md_toc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;foo.md&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="go">## Hi</span>
-
-<span class="go">[](TOC)</span>
-
-<span class="go">hey</span>
-
-<span class="go">### How are you?           !!!</span>
-
-<span class="go">fine, thanks</span>
-
-<span class="go"># Bye</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">md_toc</span><span class="o">.</span><span class="n">write_string_on_file_between_markers</span><span class="p">(</span><span class="s1">&#39;fake_md.md&#39;</span><span class="p">,</span><span class="s1">&#39;Hallo </span><span class="se">\</span>
-<span class="go">how are you?\nVery well thanks...\n\nGoodbye\n\n\nFarewell\n&#39;, \</span>
-<span class="go">&#39;[](TOC)&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="go">## Hi</span>
-
-<span class="go">[](TOC)</span>
-
-<span class="go">Hallo how are you?</span>
-<span class="go">Very well thanks...</span>
-
-<span class="go">Goodbye</span>
-
-
-<span class="go">Farewell</span>
-
-<span class="go">[](TOC)</span>
-
-<span class="go">hey</span>
-
-<span class="go">### How are you?           !!!</span>
-
-<span class="go">fine, thanks</span>
-
-<span class="go"># Bye</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </div>
@@ -435,7 +315,6 @@ and the end of the string.</li>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Usage helps</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Interface</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#main-interface">Main Interface</a></li>
 </ul>
@@ -450,7 +329,7 @@ and the end of the string.</li>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="cli.html" title="previous chapter">CLI Usage helps</a></li>
+      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
       <li>Next: <a href="markdown_specification.html" title="next chapter">Markdown spec</a></li>
   </ul></li>
 </ul>
