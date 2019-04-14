@@ -567,6 +567,55 @@ is_opening_code_fence function.</p>
 </table>
 </dd></dl>
 
+<dl class="function">
+<dt id="md_toc.build_indentation_list">
+<code class="descclassname">md_toc.</code><code class="descname">build_indentation_list</code><span class="sig-paren">(</span><em>parser: str = 'github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.build_indentation_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a data structure that holds the state of indentations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parser</strong> (<em>str</em>) – decides the length of the list.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">indentation_list, a list that contains the state of
+indentations given a header type.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">one of the built in exceptions</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="md_toc.toc_renders_as_coherent_list">
+<code class="descclassname">md_toc.</code><code class="descname">toc_renders_as_coherent_list</code><span class="sig-paren">(</span><em>header_type_curr: int = 1, indentation_list: list = [False, False, False, False, False, False], parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#md_toc.toc_renders_as_coherent_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the TOC will render as a working list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1-Inf]).</li>
+<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate ordered list markers</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">renders_as_list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">one of the built in exceptions</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 <div class="section" id="exceptions">
 <h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
