@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Markdown spec &#8212; md-toc 5.0.1 documentation</title>
+    <title>Markdown spec &#8212; md-toc 6.0.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -126,8 +126,10 @@ reason we assume that <code class="docutils literal notranslate"><span class="pr
 </div></blockquote>
 </div>
 </div>
-<div class="section" id="what-are-headers-and-what-are-not">
-<h2>What are headers and what are not<a class="headerlink" href="#what-are-headers-and-what-are-not" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rules">
+<h2>Rules<a class="headerlink" href="#rules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="headers">
+<h3>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
 <p>Only ATX-style headings are supported in md_toc.</p>
 <ul>
 <li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>: the code used in md_toc is a reverse engineering of the
@@ -183,9 +185,9 @@ includes ARX headers with line endings only as main content, such as
 </ul>
 </div>
 <div class="section" id="list-item-rules">
-<h2>List item rules<a class="headerlink" href="#list-item-rules" title="Permalink to this headline">¶</a></h2>
+<h3>List item rules<a class="headerlink" href="#list-item-rules" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="problems">
-<h3>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">¶</a></h3>
+<h4>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">¶</a></h4>
 <p>We are interested in sublists indentation rules for all types of lists, and
 integer overflows in case of ordered lists.</p>
 <p>For ordered lists, we are not concerned about using <code class="docutils literal notranslate"><span class="pre">0</span></code> or negative numbers
@@ -236,9 +238,9 @@ with:</p>
 </div></blockquote>
 </div>
 <div class="section" id="indentation">
-<h3>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h3>
+<h4>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h4>
 <ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>: list indentation with this parser is always based on the
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>: list indentation for sublists with this parser is based on the
 previous state, as stated in the GitHub Flavored Markdown document, at
 section 5.2:</p>
 <blockquote>
@@ -251,6 +253,9 @@ blocks must be indented five spaces in order to fall under the list item.”</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.github.com/gfm/#list-items">https://github.github.com/gfm/#list-items</a></li>
 </ul>
+<p>This is also true with the specular case: if our new list element needs less
+indentation than the one processed currently, we have to use the same number
+of indentation spaces used somewhere earlier in the list.</p>
 </li>
 <li><p class="first"><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
 <ul class="simple">
@@ -500,7 +505,7 @@ indentation rule.</p>
 </ul>
 </div>
 <div class="section" id="overflows">
-<h3>Overflows<a class="headerlink" href="#overflows" title="Permalink to this headline">¶</a></h3>
+<h4>Overflows<a class="headerlink" href="#overflows" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">github</span></code>: ordered list markers cannot exceed <code class="docutils literal notranslate"><span class="pre">99999999</span></code> according to
 the following. If that is the case then a  <code class="docutils literal notranslate"><span class="pre">GithubOverflowOrderedListMarker</span></code>
@@ -517,8 +522,8 @@ overflows:<ul>
 </ul>
 </div>
 </div>
-<div class="section" id="link-label-rules">
-<h2>Link label rules<a class="headerlink" href="#link-label-rules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="link-label">
+<h3>Link label<a class="headerlink" href="#link-label" title="Permalink to this headline">¶</a></h3>
 <p>If the user decides to generate the table of contents with the anchor links,
 then link label rules will be applied.</p>
 <ul>
@@ -673,7 +678,7 @@ detecting <code class="docutils literal notranslate"><span class="pre">(</span><
 </ul>
 </div>
 <div class="section" id="anchor-link-types-and-behaviours">
-<h2>Anchor link types and behaviours<a class="headerlink" href="#anchor-link-types-and-behaviours" title="Permalink to this headline">¶</a></h2>
+<h3>Anchor link types and behaviours<a class="headerlink" href="#anchor-link-types-and-behaviours" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>: a translated version of the Ruby algorithm is used in md_toc.
 The original one is repored here:</p>
@@ -752,7 +757,7 @@ is used in md_toc. The original version is here:</p>
 </ul>
 </div>
 <div class="section" id="code-fence">
-<h2>Code fence<a class="headerlink" href="#code-fence" title="Permalink to this headline">¶</a></h2>
+<h3>Code fence<a class="headerlink" href="#code-fence" title="Permalink to this headline">¶</a></h3>
 <p>Code fences are sections of a markdown document where some parsers treat the
 text within them as verbatim. Usually the purpose of these sections is to
 display source code. Some programming languages use the character <code class="docutils literal notranslate"><span class="pre">#</span></code> as a
@@ -770,6 +775,29 @@ documentation:<ul>
 </ul>
 </li>
 </ul>
+</div>
+<div class="section" id="toc-marker">
+<h3>TOC marker<a class="headerlink" href="#toc-marker" title="Permalink to this headline">¶</a></h3>
+<p>A TOC marker is a string that marks that the start and the end of the table
+of contents in a markdown file.</p>
+<p>By default it was decided to use <code class="docutils literal notranslate"><span class="pre">[](TOC)</span></code> as the default TOC marker because
+it would result invisible in some markdown parsers. In other cases, however, such
+as the one used by Gitea, that particular TOC marker was still visible. HTML
+comments seem to be a better solution.</p>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://spec.commonmark.org/0.28/#html-comment">https://spec.commonmark.org/0.28/#html-comment</a></li>
+</ul>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
+<p>I cannot find the corresponding code, but I found this:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/master/test/MarkdownTest_1.0.3/Tests/Inline%20HTML%20comments.html">https://github.com/vmg/redcarpet/blob/master/test/MarkdownTest_1.0.3/Tests/Inline%20HTML%20comments.html</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="other-markdown-parsers">
 <h2>Other markdown parsers<a class="headerlink" href="#other-markdown-parsers" title="Permalink to this headline">¶</a></h2>
@@ -850,11 +878,7 @@ possible)</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Markdown spec</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#supported-markdown-parsers">Supported markdown parsers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-are-headers-and-what-are-not">What are headers and what are not</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#list-item-rules">List item rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#link-label-rules">Link label rules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#anchor-link-types-and-behaviours">Anchor link types and behaviours</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#code-fence">Code fence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rules">Rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-markdown-parsers">Other markdown parsers</a></li>
 </ul>
 </li>

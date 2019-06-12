@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Contributing &#8212; md-toc 5.0.1 documentation</title>
+    <title>Contributing &#8212; md-toc 6.0.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -36,6 +36,13 @@
             
   <div class="section" id="contributing">
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="talk">
+<h2>Talk<a class="headerlink" href="#talk" title="Permalink to this headline">¶</a></h2>
+<p>Suggestions, improvements and discussion:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://gitter.im/md-toc/community">https://gitter.im/md-toc/community</a></li>
+</ul>
+</div>
 <div class="section" id="git-branches">
 <h2>Git branches<a class="headerlink" href="#git-branches" title="Permalink to this headline">¶</a></h2>
 <p>What follows is a table of the git branches used in md-toc’s repository.
@@ -99,6 +106,15 @@ in a terminal:</p>
 </div>
 <p>You can also add this command before every git commit as by running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make githook
+</pre></div>
+</div>
+</div>
+<div class="section" id="benchmarks">
+<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this headline">¶</a></h2>
+<p>Time-related benchmarks are useful to understand how different code versions perform.
+A benchmark script which calls the unit tests is present in the tests directory.
+You can call it with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make benchmark
 </pre></div>
 </div>
 </div>
@@ -168,9 +184,11 @@ in a terminal:</p>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Developer Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown_specification.html">Markdown spec</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#talk">Talk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#git-branches">Git branches</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#unit-tests">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-pep-compliancy">Python PEP compliancy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#todo-and-fixme">TODO and FIXME</a></li>
