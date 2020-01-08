@@ -6,14 +6,14 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Installation &#8212; md-toc 6.0.0 documentation</title>
+    <title>Installation &#8212; md-toc 6.0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Developer Interface" href="api.html" />
@@ -36,21 +36,11 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Run the following command in either a root or normal terminal (depending on
-your Python setup) from the root directory of the project’s cloned repository,</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+<p>Install md_toc via pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip3 install md_toc --user
 </pre></div>
 </div>
-<p>or simply</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">install</span>
-</pre></div>
-</div>
-<p>You can also install md_toc via pip (i.e: without having to download the source
-code):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">md_toc</span>
-</pre></div>
-</div>
-<p>All the necessary dependencies should be installed automatically along with the
+<p>All the necessary dependencies are installed automatically along with the
 program.</p>
 <div class="section" id="distribution-packages">
 <h2>Distribution packages<a class="headerlink" href="#distribution-packages" title="Permalink to this headline">¶</a></h2>
@@ -62,7 +52,7 @@ the <code class="docutils literal notranslate"><span class="pre">./packages/aur<
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Python 3.5</li>
+<li>Python &gt;= 3.5</li>
 <li><a class="reference external" href="https://github.com/frnmst/fpyutils">fpyutils</a></li>
 </ul>
 </div>
@@ -139,10 +129,10 @@ the <code class="docutils literal notranslate"><span class="pre">./packages/aur<
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2017-2019, Franco Masotti.
+      &copy;2017-2020, Franco Masotti.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
