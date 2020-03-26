@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Markdown spec &mdash; md-toc 6.0.2 documentation</title>
+  <title>Markdown spec &mdash; md-toc 7.0.0 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                6.0.2
+                7.0.0
               </div>
             
           
@@ -192,81 +192,86 @@ how to parse markdown files and to generate the table of contents.</p>
 <div class="section" id="supported-markdown-parsers">
 <h2>Supported markdown parsers<a class="headerlink" href="#supported-markdown-parsers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">cmark</span></code>:<ul>
-<li>“CommonMark parsing and rendering library and program in C”.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmark</span></code>:</p>
+<ul>
+<li><p>“CommonMark parsing and rendering library and program in C”.</p></li>
 </ul>
 </li>
-<li><code class="docutils literal notranslate"><span class="pre">commonmarker</span></code>:<ul>
-<li>a “Ruby wrapper for libcmark (CommonMark parser)”.</li>
-<li>As described on their website: “It also includes extensions to
+<li><p><code class="docutils literal notranslate"><span class="pre">commonmarker</span></code>:</p>
+<ul>
+<li><p>a “Ruby wrapper for libcmark (CommonMark parser)”.</p></li>
+<li><p>As described on their website: “It also includes extensions to
 the CommonMark spec as documented in the GitHub Flavored Markdown spec,
 such as support for tables, strikethroughs, and autolinking.”. For this
-reason we assume that <code class="docutils literal notranslate"><span class="pre">commonmarker</span></code> is an alias of <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+reason we assume that <code class="docutils literal notranslate"><span class="pre">commonmarker</span></code> is an alias of <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
 </li>
-<li><code class="docutils literal notranslate"><span class="pre">github</span></code>:<ul>
-<li>uses a forked version of <code class="docutils literal notranslate"><span class="pre">cmark</span></code> with some added extensions
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>:</p>
+<ul>
+<li><p>uses a forked version of <code class="docutils literal notranslate"><span class="pre">cmark</span></code> with some added extensions
 which should not concern md_toc. For this reason we assume that <code class="docutils literal notranslate"><span class="pre">cmark</span></code>
-and <code class="docutils literal notranslate"><span class="pre">github</span></code> represent the same parser in md_toc.</li>
+and <code class="docutils literal notranslate"><span class="pre">github</span></code> represent the same parser in md_toc.</p></li>
 </ul>
 </li>
-<li><code class="docutils literal notranslate"><span class="pre">gitlab</span></code>:<ul>
-<li>uses <code class="docutils literal notranslate"><span class="pre">commonmarker</span></code>. Older versions of md_toc, prior to
+<li><p><code class="docutils literal notranslate"><span class="pre">gitlab</span></code>:</p>
+<ul>
+<li><p>uses <code class="docutils literal notranslate"><span class="pre">commonmarker</span></code>. Older versions of md_toc, prior to
 version <code class="docutils literal notranslate"><span class="pre">3.0.0</span></code>, use <code class="docutils literal notranslate"><span class="pre">gitlab</span></code> as an alias of <code class="docutils literal notranslate"><span class="pre">redcarpet</span></code> while
 newer versions use <code class="docutils literal notranslate"><span class="pre">github</span></code> instead, because in the past GitLab used
-Redcarpet as markdown parser.</li>
-<li>The extensions used in GitLab Flavored Markdown (not to be confused
+Redcarpet as markdown parser.</p></li>
+<li><p>The extensions used in GitLab Flavored Markdown (not to be confused
 with GitHub Flavored Markdown) should not concern md_toc. For this
-reason we assume that <code class="docutils literal notranslate"><span class="pre">gitlab</span></code> is an alias of <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+reason we assume that <code class="docutils literal notranslate"><span class="pre">gitlab</span></code> is an alias of <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
 </li>
-<li><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:<ul>
-<li>“The safe Markdown parser, reloaded.”</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
+<ul>
+<li><p>“The safe Markdown parser, reloaded.”</p></li>
 </ul>
 </li>
 </ul>
 <div class="section" id="parser-summary">
 <h3>Parser Summary<a class="headerlink" href="#parser-summary" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><table border="1" class="docutils">
+<div><table class="docutils align-default">
 <colgroup>
-<col width="12%" />
-<col width="8%" />
-<col width="52%" />
-<col width="28%" />
+<col style="width: 12%" />
+<col style="width: 8%" />
+<col style="width: 52%" />
+<col style="width: 28%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Parser</th>
-<th class="head">Alias of</th>
-<th class="head">Supported parser version</th>
-<th class="head">Source</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parser</p></th>
+<th class="head"><p>Alias of</p></th>
+<th class="head"><p>Supported parser version</p></th>
+<th class="head"><p>Source</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">cmark</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">github</span></code></td>
-<td>&#160;</td>
-<td><a class="reference external" href="https://github.com/commonmark/cmark">https://github.com/commonmark/cmark</a></td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cmark</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">github</span></code></p></td>
+<td></td>
+<td><p><a class="reference external" href="https://github.com/commonmark/cmark">https://github.com/commonmark/cmark</a></p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">commonmarker</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">github</span></code></td>
-<td>&#160;</td>
-<td><a class="reference external" href="https://github.com/gjtorikian/commonmarker">https://github.com/gjtorikian/commonmarker</a></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">commonmarker</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">github</span></code></p></td>
+<td></td>
+<td><p><a class="reference external" href="https://github.com/gjtorikian/commonmarker">https://github.com/gjtorikian/commonmarker</a></p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">github</span></code></td>
-<td>&#160;</td>
-<td><code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0.28-gfm</span> <span class="pre">(2017-08-01)</span></code></td>
-<td><a class="reference external" href="https://github.com/github/cmark">https://github.com/github/cmark</a></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">github</span></code></p></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Version</span> <span class="pre">0.28-gfm</span> <span class="pre">(2017-08-01)</span></code></p></td>
+<td><p><a class="reference external" href="https://github.com/github/cmark">https://github.com/github/cmark</a></p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">gitlab</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">github</span></code></td>
-<td>&#160;</td>
-<td><a class="reference external" href="https://docs.gitlab.com/ee/user/markdown.html">https://docs.gitlab.com/ee/user/markdown.html</a></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gitlab</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">github</span></code></p></td>
+<td></td>
+<td><p><a class="reference external" href="https://docs.gitlab.com/ee/user/markdown.html">https://docs.gitlab.com/ee/user/markdown.html</a></p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code></td>
-<td>&#160;</td>
-<td><code class="docutils literal notranslate"><span class="pre">https://github.com/vmg/redcarpet/tree/94f6e27bdf2395efa555a7c772a3d8b70fb84346</span></code></td>
-<td><a class="reference external" href="https://github.com/vmg/redcarpet">https://github.com/vmg/redcarpet</a></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code></p></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://github.com/vmg/redcarpet/tree/94f6e27bdf2395efa555a7c772a3d8b70fb84346</span></code></p></td>
+<td><p><a class="reference external" href="https://github.com/vmg/redcarpet">https://github.com/vmg/redcarpet</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -279,15 +284,15 @@ reason we assume that <code class="docutils literal notranslate"><span class="pr
 <h3>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h3>
 <p>Only ATX-style headings are supported in md_toc.</p>
 <ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>: the code used in md_toc is a reverse engineering of the
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>: the code used in md_toc is a reverse engineering of the
 behavour described in the following:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.github.com/gfm/#atx-heading">https://github.github.com/gfm/#atx-heading</a></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#atx-heading">https://github.github.com/gfm/#atx-heading</a></p></li>
 </ul>
 <p>The escape character <code class="docutils literal notranslate"><span class="pre">\</span></code> will be left as-is since they are parsed by
 Github’s markdown parser already:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.github.com/gfm/#backslash-escapes">https://github.github.com/gfm/#backslash-escapes</a></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#backslash-escapes">https://github.github.com/gfm/#backslash-escapes</a></p></li>
 </ul>
 <p>A line ending character is <code class="docutils literal notranslate"><span class="pre">U+000A</span></code> or the <code class="docutils literal notranslate"><span class="pre">U+000D</span></code> character,
 respectively <code class="docutils literal notranslate"><span class="pre">\n</span></code> and <code class="docutils literal notranslate"><span class="pre">\r</span></code>. Everything following those characters
@@ -296,12 +301,12 @@ the trailing newline or carriage return at the end of each line. This also
 includes ARX headers with line endings only as main content, such as
 <code class="docutils literal notranslate"><span class="pre">#\n</span></code> or <code class="docutils literal notranslate"><span class="pre">#\r</span></code>. See also:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.github.com/gfm/#line">https://github.github.com/gfm/#line</a></li>
-<li><a class="reference external" href="https://github.github.com/gfm/#line-ending">https://github.github.com/gfm/#line-ending</a></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#line">https://github.github.com/gfm/#line</a></p></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#line-ending">https://github.github.com/gfm/#line-ending</a></p></li>
 </ul>
 <p>Every other rule for ATX headings is applied.</p>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: this is the license used in md_toc:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: this is the license used in md_toc:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2009</span><span class="p">,</span> <span class="n">Natacha</span> <span class="n">Porté</span>
 <span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2015</span><span class="p">,</span> <span class="n">Vicent</span> <span class="n">Marti</span>
 <span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2018</span><span class="p">,</span> <span class="n">Franco</span> <span class="n">Masotti</span> <span class="o">&lt;</span><span class="n">franco</span><span class="o">.</span><span class="n">masotti</span><span class="nd">@student</span><span class="o">.</span><span class="n">unife</span><span class="o">.</span><span class="n">it</span><span class="o">&gt;</span>
@@ -325,8 +330,8 @@ includes ARX headers with line endings only as main content, such as
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1444">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1444</a></li>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1981">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1981</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1444">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1444</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1981">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1981</a></p></li>
 </ul>
 </li>
 </ul>
@@ -387,7 +392,7 @@ with:</p>
 <div class="section" id="indentation">
 <h4>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h4>
 <ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>: list indentation for sublists with this parser is based on the
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>: list indentation for sublists with this parser is based on the
 previous state, as stated in the GitHub Flavored Markdown document, at
 section 5.2:</p>
 <blockquote>
@@ -398,16 +403,16 @@ spaces between the list marker and the next non-whitespace character, then
 blocks must be indented five spaces in order to fall under the list item.”</p>
 </div></blockquote>
 <ul class="simple">
-<li><a class="reference external" href="https://github.github.com/gfm/#list-items">https://github.github.com/gfm/#list-items</a></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#list-items">https://github.github.com/gfm/#list-items</a></p></li>
 </ul>
 <p>This is also true with the specular case: if our new list element needs less
 indentation than the one processed currently, we have to use the same number
 of indentation spaces used somewhere earlier in the list.</p>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1553">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1553</a></li>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1528">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1528</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1553">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1553</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1528">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1528</a></p></li>
 </ul>
 <p>The following C function returns the first non-whitespace character
 after the list marker. The value of <code class="docutils literal notranslate"><span class="pre">0</span></code> is returned if the input
@@ -444,8 +449,8 @@ single line comments.</p>
 <p>As far as I can tell from the previous and other functions, on a new list
 block the 4 spaces indentation rule applies:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1822">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1822</a></li>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1873">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1873</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1822">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1822</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1873">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1873</a></p></li>
 </ul>
 <p>This means that anything that has more than 3 whitespaces is considered as
 sublist. The only exception seems to be for the first sublist in a list
@@ -627,8 +632,8 @@ by <code class="docutils literal notranslate"><span class="pre">parse_listitem</
 is not trivial. For this reason I might be mistaken about the 4 spaces
 indentation rule.</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L2418">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L2418</a></li>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1958">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1958</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L2418">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L2418</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1958">https://github.com/vmg/redcarpet/blob/94f6e27bdf2395efa555a7c772a3d8b70fb84346/ext/redcarpet/markdown.c#L1958</a></p></li>
 </ul>
 <p>Here is an extract of the <code class="docutils literal notranslate"><span class="pre">parse_block</span></code> function with the calls to
 <code class="docutils literal notranslate"><span class="pre">parse_list</span></code>:</p>
@@ -654,16 +659,18 @@ indentation rule.</p>
 <div class="section" id="overflows">
 <h4>Overflows<a class="headerlink" href="#overflows" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">github</span></code>: ordered list markers cannot exceed <code class="docutils literal notranslate"><span class="pre">99999999</span></code> according to
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>: ordered list markers cannot exceed <code class="docutils literal notranslate"><span class="pre">99999999</span></code> according to
 the following. If that is the case then a  <code class="docutils literal notranslate"><span class="pre">GithubOverflowOrderedListMarker</span></code>
-exception is raised:<ul>
-<li><a class="reference external" href="https://github.github.com/gfm/#ordered-list-marker">https://github.github.com/gfm/#ordered-list-marker</a></li>
-<li><a class="reference external" href="https://spec.commonmark.org/0.28/#ordered-list-marker">https://spec.commonmark.org/0.28/#ordered-list-marker</a></li>
+exception is raised:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#ordered-list-marker">https://github.github.com/gfm/#ordered-list-marker</a></p></li>
+<li><p><a class="reference external" href="https://spec.commonmark.org/0.28/#ordered-list-marker">https://spec.commonmark.org/0.28/#ordered-list-marker</a></p></li>
 </ul>
 </li>
-<li><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: apparently there are no cases of ordered list marker
-overflows:<ul>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/8db31cb83e7d81b19970466645e899b5ac3bc15d/ext/redcarpet/markdown.c#L1529">https://github.com/vmg/redcarpet/blob/8db31cb83e7d81b19970466645e899b5ac3bc15d/ext/redcarpet/markdown.c#L1529</a></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: apparently there are no cases of ordered list marker
+overflows:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/8db31cb83e7d81b19970466645e899b5ac3bc15d/ext/redcarpet/markdown.c#L1529">https://github.com/vmg/redcarpet/blob/8db31cb83e7d81b19970466645e899b5ac3bc15d/ext/redcarpet/markdown.c#L1529</a></p></li>
 </ul>
 </li>
 </ul>
@@ -674,9 +681,9 @@ overflows:<ul>
 <p>If the user decides to generate the table of contents with the anchor links,
 then link label rules will be applied.</p>
 <ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.github.com/gfm/#link-label">https://github.github.com/gfm/#link-label</a></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#link-label">https://github.github.com/gfm/#link-label</a></p></li>
 </ul>
 <p>If a line ends in 1 or more ‘’ characters, this disrupts the anchor
 title. For example <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">[xdmdmsdm\](#xdmdmsdm)</span></code> becomes
@@ -691,17 +698,17 @@ exception is raised.</p>
 <p>If the headers contains <code class="docutils literal notranslate"><span class="pre">[</span></code> or <code class="docutils literal notranslate"><span class="pre">]</span></code>, these characters
 are treated with the following rules.</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.github.com/gfm/#link-text">https://github.github.com/gfm/#link-text</a></li>
-<li><a class="reference external" href="https://github.github.com/gfm/#example-302">https://github.github.com/gfm/#example-302</a></li>
-<li><a class="reference external" href="https://github.github.com/gfm/#example-496">https://github.github.com/gfm/#example-496</a></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#link-text">https://github.github.com/gfm/#link-text</a></p></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#example-302">https://github.github.com/gfm/#example-302</a></p></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#example-496">https://github.github.com/gfm/#example-496</a></p></li>
 </ul>
 <p>According to a function in the source code, balanced square brackets do not
 work, however they do when interpeted by the web interface. It is however
 possible that they are supported within the <code class="docutils literal notranslate"><span class="pre">handle_close_bracket</span></code>
 function.</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L881">https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L881</a></li>
-<li><a class="reference external" href="https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L994">https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L994</a></li>
+<li><p><a class="reference external" href="https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L881">https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L881</a></p></li>
+<li><p><a class="reference external" href="https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L994">https://github.com/github/cmark/blob/6b101e33ba1637e294076c46c69cd6a262c7539f/src/inlines.c#L994</a></p></li>
 </ul>
 <p>Here is the original C function with some more comments added:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Parse a link label.  Returns 1 if successful.</span>
@@ -770,13 +777,13 @@ function.</p>
 </div>
 <p>For simpleness the escape <code class="docutils literal notranslate"><span class="pre">[</span></code> and <code class="docutils literal notranslate"><span class="pre">]</span></code> rule is used.</p>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L998">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L998</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L998">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L998</a></p></li>
 </ul>
 <p>Let’s inspect this loop:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1017">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1017</a>):</li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1017">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1017</a>):</p></li>
 </ul>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* looking for the matching closing bracket */</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -817,8 +824,8 @@ That lable contains a return statement so that string is not treated as
 inline link anymore. A similar code is implemented also for
 detecting <code class="docutils literal notranslate"><span class="pre">(</span></code> and <code class="docutils literal notranslate"><span class="pre">)</span></code>. See:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1088">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1088</a></li>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1099">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1099</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1088">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1088</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1099">https://github.com/vmg/redcarpet/blob/e3a1d0b00a77fa4e2d3c37322bea66b82085486f/ext/redcarpet/markdown.c#L1099</a></p></li>
 </ul>
 <p>To solve this we use the same workaround used for <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p>
 </li>
@@ -827,17 +834,17 @@ detecting <code class="docutils literal notranslate"><span class="pre">(</span><
 <div class="section" id="anchor-link-types-and-behaviours">
 <h3>Anchor link types and behaviours<a class="headerlink" href="#anchor-link-types-and-behaviours" title="Permalink to this headline">¶</a></h3>
 <ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>: a translated version of the Ruby algorithm is used in md_toc.
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>: a translated version of the Ruby algorithm is used in md_toc.
 The original one is repored here:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb">https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb</a></li>
+<li><p><a class="reference external" href="https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb">https://github.com/jch/html-pipeline/blob/master/lib/html/pipeline/toc_filter.rb</a></p></li>
 </ul>
 <p>I could not find the code directly responsable for the anchor link generation.
 See also:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.github.com/gfm/">https://github.github.com/gfm/</a></li>
-<li><a class="reference external" href="https://githubengineering.com/a-formal-spec-for-github-markdown/">https://githubengineering.com/a-formal-spec-for-github-markdown/</a></li>
-<li><a class="reference external" href="https://github.com/github/cmark/issues/65#issuecomment-343433978">https://github.com/github/cmark/issues/65#issuecomment-343433978</a></li>
+<li><p><a class="reference external" href="https://github.github.com/gfm/">https://github.github.com/gfm/</a></p></li>
+<li><p><a class="reference external" href="https://githubengineering.com/a-formal-spec-for-github-markdown/">https://githubengineering.com/a-formal-spec-for-github-markdown/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/github/cmark/issues/65#issuecomment-343433978">https://github.com/github/cmark/issues/65#issuecomment-343433978</a></p></li>
 </ul>
 <p>This is the license used in md_toc:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2012</span> <span class="n">GitHub</span> <span class="n">Inc</span><span class="o">.</span> <span class="ow">and</span> <span class="n">Jerry</span> <span class="n">Cheung</span>
@@ -866,11 +873,11 @@ See also:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: treats consecutive dash characters by tranforming them
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: treats consecutive dash characters by tranforming them
 into a single dash character. A translated version of the C algorithm
 is used in md_toc. The original version is here:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/html.c#L274">https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/html.c#L274</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/html.c#L274">https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/html.c#L274</a></p></li>
 </ul>
 <p>This is the license used in md_toc:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2009</span><span class="p">,</span> <span class="n">Natacha</span> <span class="n">Porté</span>
@@ -897,8 +904,8 @@ is used in md_toc. The original version is here:</p>
 </div>
 <p>See also:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/issues/618#issuecomment-306476184">https://github.com/vmg/redcarpet/issues/618#issuecomment-306476184</a></li>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/issues/307#issuecomment-261793668">https://github.com/vmg/redcarpet/issues/307#issuecomment-261793668</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/issues/618#issuecomment-306476184">https://github.com/vmg/redcarpet/issues/618#issuecomment-306476184</a></p></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/issues/307#issuecomment-261793668">https://github.com/vmg/redcarpet/issues/307#issuecomment-261793668</a></p></li>
 </ul>
 </li>
 </ul>
@@ -912,13 +919,15 @@ way to comment a line in the code. For this reason md_toc needs to ignore code
 fences in order not to treat the <code class="docutils literal notranslate"><span class="pre">#</span></code> character as an ATX-style heading and thus
 get parsed as an element of the TOC.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">github</span></code>: the rules followed are the ones reported on the
-documentation:<ul>
-<li><a class="reference external" href="https://github.github.com/gfm/#code-fence">https://github.github.com/gfm/#code-fence</a></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>: the rules followed are the ones reported on the
+documentation:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.github.com/gfm/#code-fence">https://github.github.com/gfm/#code-fence</a></p></li>
 </ul>
 </li>
-<li><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: needs to be implemented:<ul>
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/markdown.c#L1389">https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/markdown.c#L1389</a></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>: needs to be implemented:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/markdown.c#L1389">https://github.com/vmg/redcarpet/blob/26c80f05e774b31cd01255b0fa62e883ac185bf3/ext/redcarpet/markdown.c#L1389</a></p></li>
 </ul>
 </li>
 </ul>
@@ -932,15 +941,15 @@ it would result invisible in some markdown parsers. In other cases, however, suc
 as the one used by Gitea, that particular TOC marker was still visible. HTML
 comments seem to be a better solution.</p>
 <ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">github</span></code>:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">github</span></code>:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://spec.commonmark.org/0.28/#html-comment">https://spec.commonmark.org/0.28/#html-comment</a></li>
+<li><p><a class="reference external" href="https://spec.commonmark.org/0.28/#html-comment">https://spec.commonmark.org/0.28/#html-comment</a></p></li>
 </ul>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">redcarpet</span></code>:</p>
 <p>I cannot find the corresponding code, but I found this:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/vmg/redcarpet/blob/master/test/MarkdownTest_1.0.3/Tests/Inline%20HTML%20comments.html">https://github.com/vmg/redcarpet/blob/master/test/MarkdownTest_1.0.3/Tests/Inline%20HTML%20comments.html</a></li>
+<li><p><a class="reference external" href="https://github.com/vmg/redcarpet/blob/master/test/MarkdownTest_1.0.3/Tests/Inline%20HTML%20comments.html">https://github.com/vmg/redcarpet/blob/master/test/MarkdownTest_1.0.3/Tests/Inline%20HTML%20comments.html</a></p></li>
 </ul>
 </li>
 </ul>
@@ -957,38 +966,38 @@ implement them while others don’t; some act on the duplicate entry problem
 while others don’t; some strip consecutive dash characters while others don’t.
 And it’s not just about anchor links, as you have read before. For example:</p>
 <ul>
-<li><p class="first">Gogs, Marked, Notabug, Gitea: Gogs uses marked as the markdown
+<li><p>Gogs, Marked, Notabug, Gitea: Gogs uses marked as the markdown
 parser while <em>NotABug.org is powered by a liberated version of gogs</em>.
 Gitea, a fork of Gogs, probably uses a custom parser. See link below.
 Situation is unclear. Here are some links:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://gogs.io/docs">https://gogs.io/docs</a></li>
-<li><a class="reference external" href="https://github.com/chjj/marked">https://github.com/chjj/marked</a></li>
-<li><a class="reference external" href="https://github.com/chjj/marked/issues/981">https://github.com/chjj/marked/issues/981</a></li>
-<li><a class="reference external" href="https://github.com/chjj/marked/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93">https://github.com/chjj/marked/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93</a></li>
-<li><a class="reference external" href="https://notabug.org/hp/gogs/">https://notabug.org/hp/gogs/</a></li>
-<li><a class="reference external" href="https://github.com/go-gitea/gitea">https://github.com/go-gitea/gitea</a></li>
-<li><a class="reference external" href="https://github.com/go-gitea/gitea/blob/2a03e96bceadfcc5e18bd61e755980ee72dcdb15/modules/markup/markdown/markdown.go">https://github.com/go-gitea/gitea/blob/2a03e96bceadfcc5e18bd61e755980ee72dcdb15/modules/markup/markdown/markdown.go</a></li>
+<li><p><a class="reference external" href="https://gogs.io/docs">https://gogs.io/docs</a></p></li>
+<li><p><a class="reference external" href="https://github.com/chjj/marked">https://github.com/chjj/marked</a></p></li>
+<li><p><a class="reference external" href="https://github.com/chjj/marked/issues/981">https://github.com/chjj/marked/issues/981</a></p></li>
+<li><p><a class="reference external" href="https://github.com/chjj/marked/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93">https://github.com/chjj/marked/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93</a></p></li>
+<li><p><a class="reference external" href="https://notabug.org/hp/gogs/">https://notabug.org/hp/gogs/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/go-gitea/gitea">https://github.com/go-gitea/gitea</a></p></li>
+<li><p><a class="reference external" href="https://github.com/go-gitea/gitea/blob/2a03e96bceadfcc5e18bd61e755980ee72dcdb15/modules/markup/markdown/markdown.go">https://github.com/go-gitea/gitea/blob/2a03e96bceadfcc5e18bd61e755980ee72dcdb15/modules/markup/markdown/markdown.go</a></p></li>
 </ul>
 <p>For this reason no implementation is available for the moment.</p>
 </li>
-<li><p class="first">Kramdown: It is unclear if this feature is available. See:</p>
+<li><p>Kramdown: It is unclear if this feature is available. See:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/gettalong/kramdown/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93">https://github.com/gettalong/kramdown/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93</a></li>
+<li><p><a class="reference external" href="https://github.com/gettalong/kramdown/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93">https://github.com/gettalong/kramdown/search?q=anchor&amp;type=Issues&amp;utf8=%E2%9C%93</a></p></li>
 </ul>
 </li>
 </ul>
 <div class="section" id="steps-to-add-an-unsupported-markdown-parser">
 <h3>Steps to add an unsupported markdown parser<a class="headerlink" href="#steps-to-add-an-unsupported-markdown-parser" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Find the source code and/or documents.</li>
-<li>Find the rules for each section, such as anchor link generation, title
+<li><p>Find the source code and/or documents.</p></li>
+<li><p>Find the rules for each section, such as anchor link generation, title
 detection, etc… Rely more on the source code than on the documentation (if
-possible)</li>
-<li>Add the relevant information on this page.</li>
-<li>Write or adapt an algorithm for that section.</li>
-<li>Write unit tests for it.</li>
-<li>Add the new parser to the CLI interface.</li>
+possible)</p></li>
+<li><p>Add the relevant information on this page.</p></li>
+<li><p>Write or adapt an algorithm for that section.</p></li>
+<li><p>Write unit tests for it.</p></li>
+<li><p>Add the new parser to the CLI interface.</p></li>
 </ol>
 </div>
 </div>

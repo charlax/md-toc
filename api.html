@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer Interface &mdash; md-toc 6.0.2 documentation</title>
+  <title>Developer Interface &mdash; md-toc 7.0.0 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                6.0.2
+                7.0.0
               </div>
             
           
@@ -169,584 +169,520 @@ file. md_toc’s API uses <a class="reference external" href="https://docs.pytho
 output types.</p>
 <dl class="function">
 <dt id="md_toc.get_atx_heading">
-<code class="descclassname">md_toc.</code><code class="descname">get_atx_heading</code><span class="sig-paren">(</span><em>line: str</em>, <em>keep_header_levels: int = 3</em>, <em>parser: str = 'github'</em>, <em>no_links: bool = False</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.get_atx_heading" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">get_atx_heading</code><span class="sig-paren">(</span><em class="sig-param">line: str</em>, <em class="sig-param">keep_header_levels: int = 3</em>, <em class="sig-param">parser: str = 'github'</em>, <em class="sig-param">no_links: bool = False</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.get_atx_heading" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a line extract the link label and its type.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>line</strong> (<em>str</em>) – the line to be examined.</li>
-<li><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<em>str</em>) – the line to be examined.</p></li>
+<li><p><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
 considered as such when building the table of contents.
-Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
-<li><strong>no_links</strong> – disables the use of links.</li>
+Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
+<li><p><strong>no_links</strong> – disables the use of links.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the line does not contain header elements according to
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None if the line does not contain header elements according to
 the rules of the selected markdown parser, or a tuple containing the
 header type and the trimmed header text, according to the selected
 parser rules, otherwise.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">typing.Optional[tuple]</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">GithubEmptyLinkLabel or GithubOverflowCharsLinkLabel or a
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>typing.Optional[tuple]</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>GithubEmptyLinkLabel or GithubOverflowCharsLinkLabel or a
 built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.get_md_header">
-<code class="descclassname">md_toc.</code><code class="descname">get_md_header</code><span class="sig-paren">(</span><em>header_text_line: str</em>, <em>header_duplicate_counter: dict</em>, <em>keep_header_levels: int = 3</em>, <em>parser: str = 'github'</em>, <em>no_links: bool = False</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#md_toc.get_md_header" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">get_md_header</code><span class="sig-paren">(</span><em class="sig-param">header_text_line: str</em>, <em class="sig-param">header_duplicate_counter: dict</em>, <em class="sig-param">keep_header_levels: int = 3</em>, <em class="sig-param">parser: str = 'github'</em>, <em class="sig-param">no_links: bool = False</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#md_toc.get_md_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a data structure with the elements needed to create a TOC line.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>header_text_line</strong> (<em>str</em>) – a single markdown line that needs to be
-transformed into a TOC line.</li>
-<li><strong>header_duplicate_counter</strong> (<em>dict</em>) – a data structure that contains the
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header_text_line</strong> (<em>str</em>) – a single markdown line that needs to be
+transformed into a TOC line.</p></li>
+<li><p><strong>header_duplicate_counter</strong> (<em>dict</em>) – a data structure that contains the
 number of occurrencies of each header anchor link. This is used to
 avoid duplicate anchor links and it is meaningful only for certain
-values of parser.</li>
-<li><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
+values of parser.</p></li>
+<li><p><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
 considered as such when building the table of contents.
-Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the input line does not correspond to one of the
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None if the input line does not correspond to one of the
 designated cases or a data structure containing the necessary
 components to create a table of contents line, otherwise.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This works like a wrapper to other functions.</p>
+<p class="admonition-title">Note</p>
+<p>This works like a wrapper to other functions.</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_toc_line">
-<code class="descclassname">md_toc.</code><code class="descname">build_toc_line</code><span class="sig-paren">(</span><em>toc_line_no_indent: str</em>, <em>no_of_indentation_spaces: int = 0</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_toc_line" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">build_toc_line</code><span class="sig-paren">(</span><em class="sig-param">toc_line_no_indent: str</em>, <em class="sig-param">no_of_indentation_spaces: int = 0</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_toc_line" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the TOC line.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>toc_line_no_indent</strong> (<em>str</em>) – the TOC line without indentation.</li>
-<li><strong>no_of_indentation_spaces</strong> (<em>int</em>) – the number of indentation spaces.
-Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>toc_line_no_indent</strong> (<em>str</em>) – the TOC line without indentation.</p></li>
+<li><p><strong>no_of_indentation_spaces</strong> (<em>int</em>) – the number of indentation spaces.
+Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">toc_line, a single line of the table of contents.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>toc_line, a single line of the table of contents.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.increase_index_ordered_list">
-<code class="descclassname">md_toc.</code><code class="descname">increase_index_ordered_list</code><span class="sig-paren">(</span><em>header_type_count: dict</em>, <em>header_type_prev: int</em>, <em>header_type_curr: int</em>, <em>parser: str = 'github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.increase_index_ordered_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">increase_index_ordered_list</code><span class="sig-paren">(</span><em class="sig-param">header_type_count: dict</em>, <em class="sig-param">header_type_prev: int</em>, <em class="sig-param">header_type_curr: int</em>, <em class="sig-param">parser: str = 'github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.increase_index_ordered_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the current index for ordered list table of contents.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>header_type_count</strong> (<em>dict</em>) – the count of each header type.</li>
-<li><strong>header_type_prev</strong> (<em>int</em>) – the previous type of header (h[1,…,Inf]).</li>
-<li><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1,…,Inf]).</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate ordered list markers.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header_type_count</strong> (<em>dict</em>) – the count of each header type.</p></li>
+<li><p><strong>header_type_prev</strong> (<em>int</em>) – the previous type of header (h[1,…,Inf]).</p></li>
+<li><p><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1,…,Inf]).</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate ordered list markers.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">GithubOverflowOrderedListMarker or a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>GithubOverflowOrderedListMarker or a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_anchor_link">
-<code class="descclassname">md_toc.</code><code class="descname">build_anchor_link</code><span class="sig-paren">(</span><em>header_text_trimmed: str</em>, <em>header_duplicate_counter: str</em>, <em>parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_anchor_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">build_anchor_link</code><span class="sig-paren">(</span><em class="sig-param">header_text_trimmed: str</em>, <em class="sig-param">header_duplicate_counter: str</em>, <em class="sig-param">parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_anchor_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply the specified slug rule to build the anchor link.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>header_text_trimmed</strong> (<em>str</em>) – the text that needs to be transformed
-in a link.</li>
-<li><strong>header_duplicate_counter</strong> (<em>dict</em>) – a data structure that keeps track of
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header_text_trimmed</strong> (<em>str</em>) – the text that needs to be transformed
+in a link.</p></li>
+<li><p><strong>header_duplicate_counter</strong> (<em>dict</em>) – a data structure that keeps track of
 possible duplicate header links in order to avoid them. This is
-meaningful only for certain values of parser.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+meaningful only for certain values of parser.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the specified parser is not recognized, or the anchor
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None if the specified parser is not recognized, or the anchor
 link, otherwise.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The licenses of each markdown parser algorithm are reported on
+<p class="admonition-title">Note</p>
+<p>The licenses of each markdown parser algorithm are reported on
 the ‘Markdown spec’ documentation page.</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_toc">
-<code class="descclassname">md_toc.</code><code class="descname">build_toc</code><span class="sig-paren">(</span><em>filename: str</em>, <em>ordered: bool = False</em>, <em>no_links: bool = False</em>, <em>no_indentation: bool = False</em>, <em>no_list_coherence: bool = False</em>, <em>keep_header_levels: int = 3</em>, <em>parser: str = 'github'</em>, <em>list_marker: str = '-'</em>, <em>skip_lines: int = 0</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_toc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">build_toc</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">ordered: bool = False</em>, <em class="sig-param">no_links: bool = False</em>, <em class="sig-param">no_indentation: bool = False</em>, <em class="sig-param">no_list_coherence: bool = False</em>, <em class="sig-param">keep_header_levels: int = 3</em>, <em class="sig-param">parser: str = 'github'</em>, <em class="sig-param">list_marker: str = '-'</em>, <em class="sig-param">skip_lines: int = 0</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_toc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the table of contents of a single file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> (<em>str</em>) – the file that needs to be read.</li>
-<li><strong>ordered</strong> (<em>bool</em>) – decides whether to build an ordered list or not.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>no_links</strong> (<em>bool</em>) – disables the use of links.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>no_indentation</strong> (<em>bool</em>) – disables indentation in the list.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – the file that needs to be read.</p></li>
+<li><p><strong>ordered</strong> (<em>bool</em>) – decides whether to build an ordered list or not.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>no_links</strong> (<em>bool</em>) – disables the use of links.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>no_indentation</strong> (<em>bool</em>) – disables indentation in the list.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
 considered as such when building the table of contents.
-Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
-<li><strong>skip_lines</strong> (<em>int</em>) – the number of lines to be skipped from
+Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
+<li><p><strong>skip_lines</strong> (<em>int</em>) – the number of lines to be skipped from
 the start of file before parsing for table of contents.
-Defaults to <code class="docutils literal notranslate"><span class="pre">0`</span></code>.</li>
+Defaults to <code class="docutils literal notranslate"><span class="pre">0`</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">toc, the corresponding table of contents of the file.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>toc, the corresponding table of contents of the file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_multiple_tocs">
-<code class="descclassname">md_toc.</code><code class="descname">build_multiple_tocs</code><span class="sig-paren">(</span><em>filenames: list</em>, <em>ordered: bool = False</em>, <em>no_links: bool = False</em>, <em>no_indentation: bool = False</em>, <em>no_list_coherence: bool = False</em>, <em>keep_header_levels: int = 3</em>, <em>parser: str = 'github'</em>, <em>list_marker: str = '-'</em>, <em>skip_lines: int = 0</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#md_toc.build_multiple_tocs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">build_multiple_tocs</code><span class="sig-paren">(</span><em class="sig-param">filenames: list</em>, <em class="sig-param">ordered: bool = False</em>, <em class="sig-param">no_links: bool = False</em>, <em class="sig-param">no_indentation: bool = False</em>, <em class="sig-param">no_list_coherence: bool = False</em>, <em class="sig-param">keep_header_levels: int = 3</em>, <em class="sig-param">parser: str = 'github'</em>, <em class="sig-param">list_marker: str = '-'</em>, <em class="sig-param">skip_lines: int = 0</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#md_toc.build_multiple_tocs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse files by line and build the table of contents of each file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filenames</strong> (<em>list</em>) – the files that needs to be read.</li>
-<li><strong>ordered</strong> (<em>bool</em>) – decides whether to build an ordered list or not.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>no_links</strong> (<em>bool</em>) – disables the use of links.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>no_indentation</strong> (<em>bool</em>) – disables indentation in the list.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filenames</strong> (<em>list</em>) – the files that needs to be read.</p></li>
+<li><p><strong>ordered</strong> (<em>bool</em>) – decides whether to build an ordered list or not.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>no_links</strong> (<em>bool</em>) – disables the use of links.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>no_indentation</strong> (<em>bool</em>) – disables indentation in the list.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>keep_header_levels</strong> (<em>int</em>) – the maximum level of headers to be
 considered as such when building the table of contents.
-Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate anchor links.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">toc_struct, the corresponding table of contents for each input
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>toc_struct, the corresponding table of contents for each input
 file.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">In case of ordered TOCs you must explicitly pass one of the
+<p class="admonition-title">Warning</p>
+<p>In case of ordered TOCs you must explicitly pass one of the
 supported ordered list markers.</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.write_string_on_file_between_markers">
-<code class="descclassname">md_toc.</code><code class="descname">write_string_on_file_between_markers</code><span class="sig-paren">(</span><em>filename: str</em>, <em>string: str</em>, <em>marker: str</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.write_string_on_file_between_markers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">write_string_on_file_between_markers</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">string: str</em>, <em class="sig-param">marker: str</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.write_string_on_file_between_markers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the table of contents on a single file.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> – the file that needs to be read or modified.</li>
-<li><strong>string</strong> (<em>str</em>) – the string that will be written on the file.</li>
-<li><strong>marker</strong> (<em>str</em>) – a marker that will identify the start
-and the end of the string.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – the file that needs to be read or modified.</p></li>
+<li><p><strong>string</strong> (<em>str</em>) – the string that will be written on the file.</p></li>
+<li><p><strong>marker</strong> (<em>str</em>) – a marker that will identify the start
+and the end of the string.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">StdinIsNotAFileToBeWritten or an fpyutils exception
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>StdinIsNotAFileToBeWritten or an fpyutils exception
 or a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.write_strings_on_files_between_markers">
-<code class="descclassname">md_toc.</code><code class="descname">write_strings_on_files_between_markers</code><span class="sig-paren">(</span><em>filenames: list</em>, <em>strings: list</em>, <em>marker: str</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.write_strings_on_files_between_markers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">write_strings_on_files_between_markers</code><span class="sig-paren">(</span><em class="sig-param">filenames: list</em>, <em class="sig-param">strings: list</em>, <em class="sig-param">marker: str</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.write_strings_on_files_between_markers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the table of contents on multiple files.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filenames</strong> (<em>list</em>) – the files that needs to be read or modified.</li>
-<li><strong>strings</strong> – the strings that will be written on the file. Each
-string is associated with one file.</li>
-<li><strong>marker</strong> (<em>str</em>) – a marker that will identify the start
-and the end of the string.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filenames</strong> (<em>list</em>) – the files that needs to be read or modified.</p></li>
+<li><p><strong>strings</strong> – the strings that will be written on the file. Each
+string is associated with one file.</p></li>
+<li><p><strong>marker</strong> (<em>str</em>) – a marker that will identify the start
+and the end of the string.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">an fpyutils exception or a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>an fpyutils exception or a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.init_indentation_log">
-<code class="descclassname">md_toc.</code><code class="descname">init_indentation_log</code><span class="sig-paren">(</span><em>parser: str = 'github'</em>, <em>list_marker: str = '-'</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#md_toc.init_indentation_log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">init_indentation_log</code><span class="sig-paren">(</span><em class="sig-param">parser: str = 'github'</em>, <em class="sig-param">list_marker: str = '-'</em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#md_toc.init_indentation_log" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a data structure that holds list marker information.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how compute indentations.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
-<li><strong>list_marker</strong> (<em>str</em>) – a string that contains some of the first
-characters of the list element. Defaults to <code class="docutils literal notranslate"><span class="pre">-</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how compute indentations.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
+<li><p><strong>list_marker</strong> (<em>str</em>) – a string that contains some of the first
+characters of the list element. Defaults to <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">indentation_log, the data structure.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>indentation_log, the data structure.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.compute_toc_line_indentation_spaces">
-<code class="descclassname">md_toc.</code><code class="descname">compute_toc_line_indentation_spaces</code><span class="sig-paren">(</span><em>header_type_curr: int = 1</em>, <em>header_type_prev: int = 0</em>, <em>parser: str = 'github'</em>, <em>ordered: bool = False</em>, <em>list_marker: str = '-'</em>, <em>indentation_log: dict = {1: {'indentation spaces': 0</em>, <em>'index': 0</em>, <em>'list marker': '-'}</em>, <em>2: {'indentation spaces': 0</em>, <em>'index': 0</em>, <em>'list marker': '-'}</em>, <em>3: {'indentation spaces': 0</em>, <em>'index': 0</em>, <em>'list marker': '-'}</em>, <em>4: {'indentation spaces': 0</em>, <em>'index': 0</em>, <em>'list marker': '-'}</em>, <em>5: {'indentation spaces': 0</em>, <em>'index': 0</em>, <em>'list marker': '-'}</em>, <em>6: {'indentation spaces': 0</em>, <em>'index': 0</em>, <em>'list marker': '-'}}</em>, <em>index: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.compute_toc_line_indentation_spaces" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">compute_toc_line_indentation_spaces</code><span class="sig-paren">(</span><em class="sig-param">header_type_curr: int = 1</em>, <em class="sig-param">header_type_prev: int = 0</em>, <em class="sig-param">parser: str = 'github'</em>, <em class="sig-param">ordered: bool = False</em>, <em class="sig-param">list_marker: str = '-'</em>, <em class="sig-param">indentation_log: dict = {1: {'indentation spaces': 0</em>, <em class="sig-param">'index': 0</em>, <em class="sig-param">'list marker': '-'}</em>, <em class="sig-param">2: {'indentation spaces': 0</em>, <em class="sig-param">'index': 0</em>, <em class="sig-param">'list marker': '-'}</em>, <em class="sig-param">3: {'indentation spaces': 0</em>, <em class="sig-param">'index': 0</em>, <em class="sig-param">'list marker': '-'}</em>, <em class="sig-param">4: {'indentation spaces': 0</em>, <em class="sig-param">'index': 0</em>, <em class="sig-param">'list marker': '-'}</em>, <em class="sig-param">5: {'indentation spaces': 0</em>, <em class="sig-param">'index': 0</em>, <em class="sig-param">'list marker': '-'}</em>, <em class="sig-param">6: {'indentation spaces': 0</em>, <em class="sig-param">'index': 0</em>, <em class="sig-param">'list marker': '-'}}</em>, <em class="sig-param">index: int = 1</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.compute_toc_line_indentation_spaces" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the number of indentation spaces for the TOC list element.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1,…,Inf]).
-Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</li>
-<li><strong>header_type_prev</strong> (<em>int</em>) – the previous type of header (h[1,…,Inf]).
-Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how compute indentations.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
-<li><strong>ordered</strong> (<em>bool</em>) – if set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, numbers will be used
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1,…,Inf]).
+Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>header_type_prev</strong> (<em>int</em>) – the previous type of header (h[1,…,Inf]).
+Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how compute indentations.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
+<li><p><strong>ordered</strong> (<em>bool</em>) – if set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, numbers will be used
 as list ids instead of dash characters.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>list_marker</strong> (<em>str</em>) – a string that contains some of the first
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>list_marker</strong> (<em>str</em>) – a string that contains some of the first
 characters of the list element.
-Defaults to <code class="docutils literal notranslate"><span class="pre">-</span></code>.</li>
-<li><strong>indentation_log</strong> (<em>dict</em>) – a data structure that holds list marker
+Defaults to <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
+<li><p><strong>indentation_log</strong> (<em>dict</em>) – a data structure that holds list marker
 information for ordered lists.
-Defaults to <code class="docutils literal notranslate"><span class="pre">init_indentation_log('github',</span> <span class="pre">'.')</span></code>.</li>
-<li><strong>index</strong> (<em>int</em>) – a number that will be used as list id in case of an
-ordered table of contents. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</li>
+Defaults to <code class="docutils literal notranslate"><span class="pre">init_indentation_log('github',</span> <span class="pre">'.')</span></code>.</p></li>
+<li><p><strong>index</strong> (<em>int</em>) – a number that will be used as list id in case of an
+ordered table of contents. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">In case of ordered TOCs you must explicitly pass one of the
+<p class="admonition-title">Warning</p>
+<p>In case of ordered TOCs you must explicitly pass one of the
 supported ordered list markers.</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.build_toc_line_without_indentation">
-<code class="descclassname">md_toc.</code><code class="descname">build_toc_line_without_indentation</code><span class="sig-paren">(</span><em>header: dict</em>, <em>ordered: bool = False</em>, <em>no_links: bool = False</em>, <em>index: int = 1</em>, <em>parser: str = 'github'</em>, <em>list_marker: str = '-'</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_toc_line_without_indentation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">build_toc_line_without_indentation</code><span class="sig-paren">(</span><em class="sig-param">header: dict</em>, <em class="sig-param">ordered: bool = False</em>, <em class="sig-param">no_links: bool = False</em>, <em class="sig-param">index: int = 1</em>, <em class="sig-param">parser: str = 'github'</em>, <em class="sig-param">list_marker: str = '-'</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#md_toc.build_toc_line_without_indentation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list element of the table of contents.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>header</strong> (<em>dict</em>) – a data structure that contains the original
-text, the trimmed text and the type of header.</li>
-<li><strong>ordered</strong> (<em>bool</em>) – if set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, numbers will be used
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header</strong> (<em>dict</em>) – a data structure that contains the original
+text, the trimmed text and the type of header.</p></li>
+<li><p><strong>ordered</strong> (<em>bool</em>) – if set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, numbers will be used
 as list ids, otherwise a dash character. Defaults
-to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>no_links</strong> (<em>bool</em>) – disables the use of links. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>index</strong> (<em>int</em>) – a number that will be used as list id in case of an
-ordered table of contents. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how compute indentations.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
-<li><strong>list_marker</strong> (<em>str</em>) – a string that contains some of the first
-characters of the list element. Defaults to <code class="docutils literal notranslate"><span class="pre">-</span></code>.</li>
+to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>no_links</strong> (<em>bool</em>) – disables the use of links. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>index</strong> (<em>int</em>) – a number that will be used as list id in case of an
+ordered table of contents. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how compute indentations.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
+<li><p><strong>list_marker</strong> (<em>str</em>) – a string that contains some of the first
+characters of the list element. Defaults to <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">toc_line_no_indent, a single line of the table of contents
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>toc_line_no_indent, a single line of the table of contents
 without indentation.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">In case of ordered TOCs you must explicitly pass one of the
+<p class="admonition-title">Warning</p>
+<p>In case of ordered TOCs you must explicitly pass one of the
 supported ordered list markers.</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.is_valid_code_fence_indent">
-<code class="descclassname">md_toc.</code><code class="descname">is_valid_code_fence_indent</code><span class="sig-paren">(</span><em>line: str</em>, <em>parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#md_toc.is_valid_code_fence_indent" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">is_valid_code_fence_indent</code><span class="sig-paren">(</span><em class="sig-param">line: str</em>, <em class="sig-param">parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#md_toc.is_valid_code_fence_indent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine if the given line has valid indentation for a code block fence.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>line</strong> (<em>str</em>) – a single markdown line to evaluate.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<em>str</em>) – a single markdown line to evaluate.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if the given line has valid indentation or False
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the given line has valid indentation or False
 otherwise.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">bool</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.is_opening_code_fence">
-<code class="descclassname">md_toc.</code><code class="descname">is_opening_code_fence</code><span class="sig-paren">(</span><em>line: str</em>, <em>parser: str = 'github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.is_opening_code_fence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">is_opening_code_fence</code><span class="sig-paren">(</span><em class="sig-param">line: str</em>, <em class="sig-param">parser: str = 'github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.is_opening_code_fence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine if the given line is possibly the opening of a fenced code block.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>line</strong> (<em>str</em>) – a single markdown line to evaluate.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<em>str</em>) – a single markdown line to evaluate.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None if the input line is not an opening code fence. Otherwise,
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None if the input line is not an opening code fence. Otherwise,
 returns the string which will identify the closing code fence
 according to the input parsers’ rules.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">typing.Optional[str]</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>typing.Optional[str]</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.is_closing_code_fence">
-<code class="descclassname">md_toc.</code><code class="descname">is_closing_code_fence</code><span class="sig-paren">(</span><em>line: str</em>, <em>fence: str</em>, <em>is_document_end: bool = False</em>, <em>parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#md_toc.is_closing_code_fence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">is_closing_code_fence</code><span class="sig-paren">(</span><em class="sig-param">line: str</em>, <em class="sig-param">fence: str</em>, <em class="sig-param">is_document_end: bool = False</em>, <em class="sig-param">parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#md_toc.is_closing_code_fence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine if the given line is the end of a fenced code block.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>line</strong> (<em>str</em>) – a single markdown line to evaluate.</li>
-<li><strong>is_document_end</strong> (<em>bool</em>) – This variable tells the function that the
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<em>str</em>) – a single markdown line to evaluate.</p></li>
+<li><p><strong>is_document_end</strong> (<em>bool</em>) – This variable tells the function that the
 end of the file is reached.
-Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</li>
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate the anchor text.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Paramter fence:</th><td class="field-body"><p class="first">a sequence of backticks or tildes marking the start of
+</dd>
+<dt class="field-even">Paramter fence</dt>
+<dd class="field-even"><p>a sequence of backticks or tildes marking the start of
 the current code block. This is usually the return value of the
 is_opening_code_fence function.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if the line ends the current code block. False otherwise.</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">bool</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the line ends the current code block. False otherwise.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.init_indentation_status_list">
-<code class="descclassname">md_toc.</code><code class="descname">init_indentation_status_list</code><span class="sig-paren">(</span><em>parser: str = 'github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.init_indentation_status_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">init_indentation_status_list</code><span class="sig-paren">(</span><em class="sig-param">parser: str = 'github'</em><span class="sig-paren">)</span><a class="headerlink" href="#md_toc.init_indentation_status_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a data structure that holds the state of indentations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parser</strong> (<em>str</em>) – decides the length of the list.
-Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">indentation_list, a list that contains the state of
-indentations given a header type.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">a built-in exception.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parser</strong> (<em>str</em>) – decides the length of the list.
+Defaults to <code class="docutils literal notranslate"><span class="pre">github</span></code>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>indentation_list, a list that contains the state of
+indentations given a header type.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="md_toc.toc_renders_as_coherent_list">
-<code class="descclassname">md_toc.</code><code class="descname">toc_renders_as_coherent_list</code><span class="sig-paren">(</span><em>header_type_curr: int = 1, header_type_first: int = 1, indentation_list: list = [False, False, False, False, False, False], parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#md_toc.toc_renders_as_coherent_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">toc_renders_as_coherent_list</code><span class="sig-paren">(</span><em class="sig-param">header_type_curr: int = 1, header_type_first: int = 1, indentation_list: list = [False, False, False, False, False, False], parser: str = 'github'</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#md_toc.toc_renders_as_coherent_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the TOC will render as a working list.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1,…,Inf]).</li>
-<li><strong>header_type_first</strong> (<em>int</em>) – the type of header first encountered (h[1,…,Inf]).
-This must correspond to the one with the least indentation.</li>
-<li><strong>parser</strong> (<em>str</em>) – decides rules on how to generate ordered list markers.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header_type_curr</strong> (<em>int</em>) – the current type of header (h[1,…,Inf]).</p></li>
+<li><p><strong>header_type_first</strong> (<em>int</em>) – the type of header first encountered (h[1,…,Inf]).
+This must correspond to the one with the least indentation.</p></li>
+<li><p><strong>parser</strong> (<em>str</em>) – decides rules on how to generate ordered list markers.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">renders_as_list</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">bool</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last">a built-in exception.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>renders_as_list</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>a built-in exception.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -754,31 +690,31 @@ This must correspond to the one with the least indentation.</li>
 <h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
 <dt id="md_toc.GithubOverflowCharsLinkLabel">
-<em class="property">exception </em><code class="descclassname">md_toc.</code><code class="descname">GithubOverflowCharsLinkLabel</code><a class="headerlink" href="#md_toc.GithubOverflowCharsLinkLabel" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">GithubOverflowCharsLinkLabel</code><a class="headerlink" href="#md_toc.GithubOverflowCharsLinkLabel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cannot parse link label.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="md_toc.GithubEmptyLinkLabel">
-<em class="property">exception </em><code class="descclassname">md_toc.</code><code class="descname">GithubEmptyLinkLabel</code><a class="headerlink" href="#md_toc.GithubEmptyLinkLabel" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">GithubEmptyLinkLabel</code><a class="headerlink" href="#md_toc.GithubEmptyLinkLabel" title="Permalink to this definition">¶</a></dt>
 <dd><p>The link lables contains only whitespace characters or is empty.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="md_toc.GithubOverflowOrderedListMarker">
-<em class="property">exception </em><code class="descclassname">md_toc.</code><code class="descname">GithubOverflowOrderedListMarker</code><a class="headerlink" href="#md_toc.GithubOverflowOrderedListMarker" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">GithubOverflowOrderedListMarker</code><a class="headerlink" href="#md_toc.GithubOverflowOrderedListMarker" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ordered list marker number is too big.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="md_toc.StdinIsNotAFileToBeWritten">
-<em class="property">exception </em><code class="descclassname">md_toc.</code><code class="descname">StdinIsNotAFileToBeWritten</code><a class="headerlink" href="#md_toc.StdinIsNotAFileToBeWritten" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">StdinIsNotAFileToBeWritten</code><a class="headerlink" href="#md_toc.StdinIsNotAFileToBeWritten" title="Permalink to this definition">¶</a></dt>
 <dd><p>stdin cannot be written onto.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="md_toc.TocDoesNotRenderAsCoherentList">
-<em class="property">exception </em><code class="descclassname">md_toc.</code><code class="descname">TocDoesNotRenderAsCoherentList</code><a class="headerlink" href="#md_toc.TocDoesNotRenderAsCoherentList" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">md_toc.</code><code class="sig-name descname">TocDoesNotRenderAsCoherentList</code><a class="headerlink" href="#md_toc.TocDoesNotRenderAsCoherentList" title="Permalink to this definition">¶</a></dt>
 <dd><p>TOC list indentations are either wrong or not what the user intended.</p>
 </dd></dl>
 
