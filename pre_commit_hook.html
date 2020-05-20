@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pre-commit hook &mdash; md-toc 7.0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="Markdown spec" href="markdown_specification.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: light-blue" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> md-toc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Developer Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown_specification.html">Markdown spec</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pre-commit hook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source_code.html">Source code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright_license.html">Copyright and License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">md-toc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Pre-commit hook</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pre_commit_hook.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pre-commit-hook">
+<h1>Pre-commit hook<a class="headerlink" href="#pre-commit-hook" title="Permalink to this headline">¶</a></h1>
+<p>This repo provides the following plugin for use with the <a class="reference external" href="https://pre-commit.com/">Pre-commit framework</a>:</p>
+<div class="literal-block-wrapper docutils container" id="pre-commit-hooks-yaml">
+<div class="code-block-caption"><span class="caption-text">The .pre-commit-hooks.yaml file</span><a class="headerlink" href="#pre-commit-hooks-yaml" title="Permalink to this code">¶</a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="c1"># Define plugins (hooks) provided by this repo.</span>
+<span class="c1"># How to test: https://pre-commit.com/#developing-hooks-interactively</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">md-toc</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Update markdown table-of-contents</span>
+  <span class="nt">description</span><span class="p">:</span> <span class="s">&#39;Replace</span><span class="nv"> </span><span class="s">TOC</span><span class="nv"> </span><span class="s">marker</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">table</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">contents&#39;</span>
+  <span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+  <span class="nt">types</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">markdown</span><span class="p p-Indicator">]</span>  <span class="c1"># as detected by pre-commit with identify-cli</span>
+  <span class="nt">entry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">md_toc</span>
+  <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">-p</span><span class="p p-Indicator">,</span> <span class="nv">github</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+<p>Add a <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> file in the root of your git repo.
+These are the default plugin settings:</p>
+<div class="literal-block-wrapper docutils container" id="pre-commit-config-yaml-simple">
+<div class="code-block-caption"><span class="caption-text">A simple example of a .pre-commit-config.yaml file</span><a class="headerlink" href="#pre-commit-config-yaml-simple" title="Permalink to this code">¶</a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span> <span class="nt">repos</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/frnmst/md-toc</span>
+   <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">master</span>  <span class="c1"># or a specific git tag from md-toc</span>
+   <span class="nt">hooks</span><span class="p">:</span>
+   <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">md-toc</span>
+</pre></div>
+</div>
+</div>
+<p>You can override the defaults via the <code class="docutils literal notranslate"><span class="pre">args</span></code> parameter, such as:</p>
+<div class="literal-block-wrapper docutils container" id="pre-commit-config-yaml-args">
+<div class="code-block-caption"><span class="caption-text">Example of arguments passed as a pre-commit</span><a class="headerlink" href="#pre-commit-config-yaml-args" title="Permalink to this code">¶</a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span> <span class="nt">repos</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/frnmst/md-toc</span>
+   <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">master</span>  <span class="c1"># or a specific git tag from md-toc</span>
+   <span class="nt">hooks</span><span class="p">:</span>
+   <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">md-toc</span>
+     <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">-p</span><span class="p p-Indicator">,</span> <span class="nv">--skip-lines</span><span class="p p-Indicator">,</span> <span class="s">&#39;1&#39;</span><span class="p p-Indicator">,</span> <span class="nv">redcarpet</span><span class="p p-Indicator">]</span>  <span class="c1"># CLI options</span>
+</pre></div>
+</div>
+</div>
+<p>Finally run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pre-commit</span> <span class="pre">install</span></code> to enable the hook.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="markdown_specification.html" class="btn btn-neutral float-left" title="Markdown spec" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2020, Franco Masotti
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
